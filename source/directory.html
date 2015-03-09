@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<title>AMWA</title>
+		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/jquery-2.1.3.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="main.js"></script>
+	
+	</head>
+
+	<body>
+
+		<div id="directoryPage" data-role="page" data-theme="b"   >
+			<div data-role="header" data-position="fixed" data-theme="b">
+				<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
+					<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
+				</div>
+				<img class=" ui-btn-right " src="images/logo.png" height="40px" width="40px" />
+				<h6></h6>
+			</div>
+
+
+
+
+			<div data-role="content" >
+				 <div id="dialog" ></div>
+				<fieldset data-role="controlgroup">
+				    <legend>Search:</legend>
+				    <label for="select-native-5">Province:</label>
+				    <select name="ddl-province" id="ddl-province" onchange="GetCities()"></select>
+				    <label for="select-native-6">City</label>
+				    <select name="ddl-city" id="ddl-city" ></select>
+				   
+				</fieldset>
+				
+				<fieldset>
+				<ul>
+					
+					<li>
+							<input type="checkbox" name="chk-fabrication" id="chk-fabrication" data-mini="true" />
+    						<label for="chk-fabrication">Fabrication Shop</label>
+					</li>
+						<li>
+							<input type="checkbox" name="chk-machine" id="chk-machine" data-mini="true" />
+    						<label for="chk-machine">Machine Shop</label>
+						</li>
+						<li>
+							<input type="checkbox" name="chk-sheetmetal" id="chk-sheetmetal" data-mini="true" />
+    						<label for="chk-sheetmetal">Sheet Metal</label>
+						</li>
+						<li>
+							<input type="checkbox" name="chk-foundries" id="chk-foundries" data-mini="true" />
+    						<label for="chk-foundries">Foundries</label>
+						</li>
+					</ul>
+					
+</fieldset>
+					
+
+					
+	
+					
+				
+				
+			</div>
+
+
+
+
+
+			
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a data-ajax="false" href="wods.html" data-role="button" data-icon="mcfit" data-iconpos="top" style="background-color:#121212 !important">WODs</a>
+						</li>
+						<li>
+							<a data-ajax="false" href="mywods.html" data-role="button" data-icon="kettle" data-iconpos="top" style="background-color:#121212 !important;border-left:1px solid #1b1b1b;border-right:1px solid #1b1b1b">Log</a>
+						</li>
+						
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="mypanel" data-theme="b">
+				<p style="text-align:center"><img src="images/mcf.png" width="70%" />
+				</p>
+				<div style="height:20px"></div>
+				<ul data-role="listview" data-filter="false" data-theme="b" data-inset="false">
+					<li>
+						<a href="wods.html" data-rel="close" class="ui-btn ui-shadow ui-btn-b ui-icon-mcfit ui-btn-icon-right" data-ajax="false">WODs</a>
+					</li>
+					
+				</ul>
+			</div><!-- /panel -->
+
+			<script>
+				$(document).delegate("#directoryPage", "pageshow", function() {
+					GetProvinces();
+				});
+				
+				function GetProvinces(){
+					$.ajax({
+							type : "POST",
+							url : "http://mycfit.ca/site_amwa_services/get_provinces.php",
+							data : {},
+							dataType : "json",
+							success : function(data) {
+								
+								if(data.count > 0){
+									$("#ddl-province").empty();
+									$("#ddl-province").append("<option value='-1'>Select a Province</option>");
+									var html = "";
+									var xml = data.result;
+									xmlDoc = $.parseXML(xml);
+									$xml = $(xmlDoc);
+									$xml.find("province").each(function() {
+										var id = $(this).find('id').text();
+										var name = $(this).find('name').text();
+									    $("#ddl-province").append("<option value='" + id + "'>" + name + "</option>");
+								
+									});
+								
+									$("#ddl-province").selectmenu("refresh");
+								}
+								
+							},
+							error : function(xhr, errorType, exception) {
+								alert("error");
+							}
+						});
+				}
+				
+				function GetCities(){
+					var prov = $("#ddl-province").val();
+					
+					$.ajax({
+							type : "POST",
+							url : "http://mycfit.ca/site_amwa_services/get_cities.php",
+							data : {'prov' : prov},
+							dataType : "json",
+							success : function(data) {
+								
+								if(data.count > 0){
+									
+									$("#ddl-city").empty();
+									$("#ddl-city").append("<option value='-1'>Select a City</option>");
+									var html = "";
+									var xml = data.result;
+									xmlDoc = $.parseXML(xml);
+									$xml = $(xmlDoc);
+									$xml.find("city").each(function() {
+										
+										var id = $(this).find('id').text();
+										var name = $(this).find('name').text();
+										
+									    $("#ddl-city").append("<option value='" + id + "'>" + decodeURI(name) + "</option>");
+								
+									});
+								
+									$("#ddl-city").selectmenu("refresh");
+								}
+								
+							},
+							error : function(xhr, errorType, exception) {
+								alert("error");
+							}
+						});
+				}
+			
+	
+	       
+			
+
+			</script>
+
+		</div>
+
+	</body>
+</html>
