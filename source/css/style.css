@@ -1,4 +1,17 @@
 ul{padding:0;margin:0}
-li{text-indent:none;padding:0;margin:0;float:left}
+
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}
 
+.ui-icon-filter:after{
+	background:#000000 url("../images/filter.png") 50% 50% no-repeat; background-size: 16px 16px; 
+	box-shadow: none;
+    -webkit-box-shadow: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-filter:after {
+		background:#000000  url("../images/filter.png") 50% 50% no-repeat;
+		background-size: 18px 18px;
+		background-color:#000000;
+	}
+	
+}
