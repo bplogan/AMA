@@ -59,22 +59,22 @@
 	   
 		console.log("deviceReady");
 		
-		//StatusBar.overlaysWebView(false);
+		StatusBar.overlaysWebView(false);
 		
 		
 		
 		
 		
 		
-        	//var networkState = navigator.connection.type;
-			//if(networkState == Connection.NONE){
-			//	window.location = "err.html";
-			//}else{
+        	var networkState = navigator.connection.type;
+			if(networkState == Connection.NONE){
+				window.location = "err.html";
+			}else{
 			
 			window.location = "directory.html";
 			
 			
-			//}
+			}
 		
 		
 		
