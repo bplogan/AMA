@@ -1,22 +1,44 @@
 [data-role=header]{background-color:#E68538 !important;height:45px !important;border:none !important;}
-[data-role=footer]{background-color:#E68538 !important;position:fixed !important}
+[data-role=footer]{background-color:#E68538 !important;position:fixed !important; height:50px !important}
 ul{padding:0;margin:0}
 div{text-shadow:none !important}
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}
 
 .ui-icon-filter:after{
-	background:#000000 url("../images/filter.png") 50% 50% no-repeat; background-size: 16px 16px; 
+	background:#000000 url("../images/filter.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
     -webkit-box-shadow: none;
+    height:36px;
+    width:36px;
+  
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.ui-icon-filter:after {
 		background:#000000  url("../images/filter.png") 50% 50% no-repeat;
-		background-size: 18px 18px;
+		background-size: 36px 36px;
 		background-color:#000000;
+		
 	}
 	
 }
+
+.ui-icon-goback:after{
+	background:#000000 url("../images/goback.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	box-shadow: none;
+    -webkit-box-shadow: none;
+    margin-top:10px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-goback:after {
+		background:#000000  url("../images/goback.png") 50% 50% no-repeat;
+		background-size: 36px 36px;
+		background-color:#000000;
+		 margin-top:10px;
+	}
+	
+}
+
+
 .ui-icon-next:after{
 	background:#F6F6F6 url("../images/next.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
@@ -34,27 +56,54 @@ div{text-shadow:none !important}
 .ui-icon-menu-bars:after{
 	background:#E68538 url("../images/menu-bars.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
-     -moz-border-radius:0px;
-   -webkit-border-radius:0px;
-   border-radius:0px;
-   width:22px;
-   height:22px;
-   margin-top:-12px;/*Adjust this value to position the icon*/
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+    width:22px;
+    height:22px;
+    margin-top:-12px;/*Adjust this value to position the icon*/
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.ui-icon-menu-bars:after {
 		background:#E68538  url("../images/menu-bars.png") 50% 50% no-repeat;
 		background-size: 36px 36px;
 		background-color:#E68538 !important;
-		 -moz-border-radius:0px;
+		-moz-border-radius:0px;
 	   -webkit-border-radius:0px;
-	   border-radius:0px;
-	   width:22px;
-	   height:22px;
-	   margin-top:-12px;/*Adjust this value to position the icon*/
+	    border-radius:0px;
+	    width:22px;
+	    height:22px;
+	    margin-top:-12px;/*Adjust this value to position the icon*/
 	}
 	
 }
+
+
+
+
+.ui-icon-phone:after{
+	background:#E68538 url("../images/phone.png") 50% 50% no-repeat; background-size: 16px 16px; 
+	box-shadow: none;
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+    padding:0 !important;
+   
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-phone:after {
+		background:#E68538  url("../images/phone.png") 50% 50% no-repeat; background-size:32px 32px;
+		background-size: 36px 36px;
+		background-color:#E68538 !important;
+		-moz-border-radius:0px;
+	   -webkit-border-radius:0px;
+	    border-radius:0px;
+	    padding:0 !important;
+	    
+	}
+	
+}
+
 
 
 .ui-filterable{
@@ -81,3 +130,40 @@ div{text-shadow:none !important}
 	border-radius:0px !important;
 	border:none;
 }
+
+.company .name{
+	font-size:22px;	
+}
+
+.company .phone{
+	height:16px;
+	width:16px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.company .phone{
+	height:18px;
+	width:18px;
+}
+}
+.company .envelope{
+	height:16px;
+	width:16px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.company .envelope{
+	height:18px;
+	width:18px;
+}
+}
+.company .contact{
+	height:16px;
+	width:16px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.company .contact{
+	height:18px;
+	width:18px;
+}
+}
+
+
