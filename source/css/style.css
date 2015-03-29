@@ -80,6 +80,35 @@ div{text-shadow:none !important}
 
 
 
+.ui-icon-gears:after{
+	background:#E68538 url("../images/gear.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	box-shadow: none;
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+    width:22px;
+    height:22px;
+    margin-top:-12px;/*Adjust this value to position the icon*/
+  
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-gears:after {
+		background:#E68538  url("../images/gear.png") 50% 50% no-repeat;
+		background-size: 36px 36px;
+		background-color:#E68538 !important;
+		-moz-border-radius:0px;
+	   -webkit-border-radius:0px;
+	    border-radius:0px;
+	    width:22px;
+	    height:22px;
+	    margin-top:-12px;/*Adjust this value to position the icon*/
+	}
+	
+}
+
+
+
+
 
 .ui-icon-phone:after{
 	background:#E68538 url("../images/phone.png") 50% 50% no-repeat; background-size: 16px 16px; 

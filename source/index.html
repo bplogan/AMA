@@ -16,24 +16,21 @@
 <body onload="init()">
 <div id="loadPage" data-role="page" data-theme="a"  >
 	
-	<div data-role="header" data-position="fixed" data-theme="b">
-		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-			<a href="#mypanel" data-role="button" data-icon="bars" data-iconpos="notext">Menu</a>
-			
-		</div>
-		<img class=" ui-btn-right " src="images/logo.png" height="40px" width="40px" />
-		<h6></h6>
-	</div>
+	
 
 	<div data-role="content" >
 		
 		
 		
 		
+		<div style="text-align:center;">
+			
+			<h1>AMWA</h1>
 		
-	
-					
 		
+		<img src="images/ajax-loader.gif" />
+		
+		</div>
 			
 	</div><!-- content -->
 
@@ -49,33 +46,64 @@
 		function init() {
 		
 		document.addEventListener("deviceready", deviceReady, false);
-		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-			$("body").addClass("ios7");
-			$("body").append('');
-			}
+		//if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+		//	$("body").addClass("ios7");
+		//	$("body").append('');
+		//	}
 	}
 	
 	function deviceReady() {
 		
 	   
-		console.log("deviceReady");
+		//console.log("deviceReady");
 		
-		StatusBar.overlaysWebView(false);
+		//StatusBar.overlaysWebView(false);
 		
+		var email = window.localStorage.getItem("email");
+		var pass = window.localStorage.getItem("pass");
 		
+		window.plugins.uniqueDeviceID.get(success, fail);
+		function success(uuid)
+		{
+		    alert(uuid);
+		};
 		
-		
-		
-		
-        	var networkState = navigator.connection.type;
-			if(networkState == Connection.NONE){
-				window.location = "err.html";
-			}else{
+		if(email == null || email == undefined){
+			window.location="login.html";
+		}else{
 			
-			window.location = "directory.html";
+			$.ajax({
+				type : "POST",
+				url : "http://mycfit.ca/site_amwa_services/login.php",
+				async: false,
+				data : {'email' : email, 'pass' : pass},
+				dataType : "json",
+				success : function(data) {
+					if(data.userid > 0){
+						window.location = "login.html";
+					}else{
+						window.location = "directory.html";
+					}	
+				},
+				error : function(xhr, errorType, exception) {
+					alert("GetServices" + xhr + errorType + exception);
+				}
+			});
+			
+		}
+		
+		
+		
+		
+        	//var networkState = navigator.connection.type;
+			//if(networkState == Connection.NONE){
+			//	window.location = "err.html";
+			//}else{
+			
+			//window.location = "directory.html";
 			
 			
-			}
+			//}
 		
 		
 		
