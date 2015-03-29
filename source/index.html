@@ -54,14 +54,14 @@
 	
 	function deviceReady() {
 		
-	   
+	   alert("ready");
 		//console.log("deviceReady");
 		
 		//StatusBar.overlaysWebView(false);
 		
 		var email = window.localStorage.getItem("email");
 		var pass = window.localStorage.getItem("pass");
-		
+		alert("here");
 		window.plugins.uniqueDeviceID.get(success, fail);
 		function success(uuid)
 		{
@@ -69,7 +69,7 @@
 		};
 		
 		if(email == null || email == undefined){
-			window.location="login.html";
+			//window.location="login.html";
 		}else{
 			
 			$.ajax({
@@ -80,9 +80,9 @@
 				dataType : "json",
 				success : function(data) {
 					if(data.userid > 0){
-						window.location = "login.html";
+						//window.location = "login.html";
 					}else{
-						window.location = "directory.html";
+						//window.location = "directory.html";
 					}	
 				},
 				error : function(xhr, errorType, exception) {
