@@ -62,11 +62,7 @@
 		var email = window.localStorage.getItem("email");
 		var pass = window.localStorage.getItem("pass");
 		alert("here");
-		window.plugins.uniqueDeviceID.get(success, fail);
-		function success(uuid)
-		{
-		    alert(uuid);
-		};
+		alert(device.uuid);
 		
 		if(email == null || email == undefined){
 			//window.location="login.html";
