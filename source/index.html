@@ -47,20 +47,20 @@
 		function init() {
 		
 		document.addEventListener("deviceready", deviceReady, false);
-		//if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
-		//	$("body").addClass("ios7");
-		//	$("body").append('');
-		//	}
+		if (navigator.userAgent.match(/(iPad.*|iPhone.*|iPod.*);.*CPU.*OS 7_\d/i)) {
+			$("body").addClass("ios7");
+			$("body").append('');
+			}
 	}
 	
 	function deviceReady() {
 		
 	   
-			//StatusBar.overlaysWebView(false);
-			//var networkState = navigator.connection.type;
-			//if(networkState == Connection.NONE){
-			//	alert("You must have a working network connection to continue");
-			//}else{
+			StatusBar.overlaysWebView(false);
+			var networkState = navigator.connection.type;
+			if(networkState == Connection.NONE){
+				alert("You must have a working network connection to continue");
+			}else{
 				
 				$.ajax({
 					type : "POST",
@@ -76,27 +76,7 @@
 					}
 				});
 				
-								
 				$.ajax({
-					type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/get_companies.php?all=1",
-					async: false,
-					data : {},
-					dataType : "json",
-					success : function(data) {
-						
-						window.localStorage.setItem("ML", data.result);					
-						$.mobile.changePage( "directory.html", { transition: "slide", changeHash: false });	
-							
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
-				}); 
-				
-				
-			
-					$.ajax({
 						type : "POST",
 						url : "http://mycfit.ca/site_amwa_services/get_services.php",
 						async: false,
@@ -110,12 +90,33 @@
 							alert("GetServices" + xhr + errorType + exception);
 						}
 					});
+								
+				$.ajax({
+					type : "POST",
+					url : "http://mycfit.ca/site_amwa_services/get_companies.php?all=1",
+					async: false,
+					data : {},
+					dataType : "json",
+					success : function(data) {
+						
+						window.localStorage.setItem("ML", data.result);					
+						window.location = "directory.html";
+							
+					},
+					error : function(xhr, errorType, exception) {
+						alert("Search" + xhr + errorType + exception);
+					}
+				}); 
+				
+				
+			
+					
 				
 				
 				
 				
 				
-			//}
+			}
 		
 	}
 		
