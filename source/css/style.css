@@ -195,4 +195,8 @@ div{text-shadow:none !important}
 }
 }
 
+.ui-checkbox .lblsub, .ui-checkbox .chksub{
+	margin-left:30px;
+}
+
 

@@ -31,7 +31,36 @@
 		
 		
 		
-		Admin Page
+		<form id='frm-admin'>
+			<fieldset>
+				<label for="txt-email">Your email</label>
+				<input type="email" name="txt-email" id="txt-email" />
+			</fieldset>
+			
+			<fieldset>
+				<label for="txt-email">Member #</label>
+				<input type="text" name="txt-membernum" id="txt-membernum"  />
+			</fieldset>
+						
+			 <fieldset>
+				<label for="chk-email">Join the mailing list?</label>
+    			<input type="checkbox" data-role="flipswitch" name="chk-email" id="chk-email" data-on-text="Yes" data-off-text="No">
+			</fieldset>
+						
+			<fieldset>
+				<label for="chk-push">Receive app notifications?</label>
+    			<input type="checkbox" data-role="flipswitch" name="chk-push" id="chk-push" data-on-text="Yes" data-off-text="No">
+			</fieldset>
+			
+			<fieldset>
+				<button type="submit">Save</button>
+			</fieldset>
+			
+			<div id="div-admin">
+				
+			</div>
+			
+		</form>
 	
 		
 	</div><!-- content -->

@@ -122,7 +122,7 @@
 							
 							          var infowindow = new google.maps.InfoWindow({
 							            content: '<b>' + address + '</b>',
-							            size: new google.maps.Size(150, 50)
+							            size: new google.maps.Size(450, 450)
 							          });
 							
 							          var marker = new google.maps.Marker({
@@ -157,7 +157,7 @@
 				
 
 function Back(){
-	window.location = 'directory.html';
+	$.mobile.changePage( "directory.html", { transition: "slideup", changeHash: false });
 }
 
 				

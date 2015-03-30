@@ -9,7 +9,7 @@
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script src="main.js"></script>
-	
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 	</head>
 
 <body>
@@ -33,7 +33,7 @@
 		
 		
 		
-	
+		
 					
 		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="a" class="animClass" data-icon="next" ></ul>
 		<p style="text-align:center;margin-top:100px" id="loading"><img src="images/ajax-loader.gif" /></p>
@@ -52,7 +52,7 @@
 			
 			<select name="ddl-city" id="ddl-city" data-mini="true"  ></select>
 			  
-			<div data-role="controlgroup" data-mini="true" id="cg-services" data-inset="false"></div>
+			<div id="cg-services" ></div>
 			
 			<button type="submit" id="btn-search" data-mini="true" data-rel="close">Apply Filters</button>
 				
@@ -86,11 +86,14 @@
 	
 		$(document).delegate("#directoryPage", "pagebeforeshow", function() {
 			$("#loading").show();
-			//GetServices();
-			
+						
 			if($('#ddl-province').children('option').length <= 0){
 				GetProvinces();
 			}
+			
+		
+			GetServices();
+			
 			
 			if($('#company-list li').size() <= 0){
 			$("#company-list").empty();
@@ -103,11 +106,11 @@
 				var id = $(this).find('id').text();
 				
 				name = $(this).find('name').text();
-				var address = $(this).find('address').text();
+				var address = decodeURI($(this).find('address').text());
 				
 				
 				
-				$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+				$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
 				$('#company-list').listview('refresh');
 				
 				
@@ -121,7 +124,7 @@
 		
 				
 		function GetProvinces(){
-			alert("provinced");
+			
 			$("#ddl-province").empty();
 			$("#ddl-province").append("<option value='-1'>Select a Province</option>");
 			var html = "";
@@ -179,42 +182,33 @@
 				}
 			
 				function GetServices(){
-									
-					$.ajax({
-							type : "POST",
-							url : "http://mycfit.ca/site_amwa_services/get_services.php",
-							async: false,
-							data : {},
-							dataType : "json",
-							success : function(data) {
-								
-								if(data.count > 0){
-									
-									$("#cg-services").html("");
-									var html = "";
-									var xml = data.result;
-									xmlDoc = $.parseXML(xml);
-									$xml = $(xmlDoc);
-									$xml.find("service").each(function() {
-										
-										var id = $(this).find('id').text();
-										var name = $(this).find('name').text();
-										
-										
-    									$("#cg-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true'></input>");
-													  
-                						$("#chk" + id).checkboxradio();
-								
-									});
-									$("#cg-services").controlgroup( "refresh" );
-									
-								}
-								
-							},
-							error : function(xhr, errorType, exception) {
-								alert("GetServices" + xhr + errorType + exception);
-							}
+					
+					$("#cg-services").html("");
+					var html = "";
+					var xml = window.localStorage.getItem("SERVICES");
+					xmlDoc = $.parseXML(xml);
+					$xml = $(xmlDoc);
+					$xml.find("service").each(function() {
+						
+						var id = $(this).find('id').text();
+						var name = $(this).find('name').text();
+						$("#cg-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true' onchange='ShowSubs(" + id + ")'></input>");
+						$("#chk" + id).checkboxradio();
+						
+						$("#cg-services").append("<div id='sub" + id + "' style='display:none'>");
+						var subs =  $(this).find('subs').html();
+						xmlDoc2 = $.parseXML(subs);
+						$subs = $(xmlDoc2);
+						$subs.find("sub").each(function() {
+							var sid = $(this).find('sub_id').text();
+							var sname = $(this).find('sub_name').text();
+							$("#cg-services").append("<label id='lbl-" + id + "-" + sid + "' class='lblsub lbl-" + id + "' lbl style='display:none' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input class='chksub chk-" + id + "' style='display:none' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true'></input>");
+							$("#chk-" + id + "-" + sid).checkboxradio();
 						});
+						$("#cg-services").append("</div>");
+					});
+					//$("#cg-services").controlgroup( "refresh" );
+											
 				}
 				
 				$('#frm-search').submit(function (e) {
@@ -223,7 +217,42 @@
 				    Search();
 				});
 
-			
+				function ShowSubs(id){
+					if ($("#chk" + id).is(':checked')) {
+						$(".lbl-" + id).show();
+					$(".chk-" + id).show();
+					}else{
+						
+						  $("input.chk-" + id).each(function(i) 
+					    	{
+					    		
+					    		$("#" + this.id).prop('checked', false);
+					    		$("#" + this.id).checkboxradio();
+					          
+					      
+					          
+					    	});   
+					    	
+					    	$("label.lbl-" + id).each(function(i) 
+					    	{
+					    		
+					    		
+					         
+					            $("#" + this.id).removeClass("ui-checkbox-on");
+					    		$("#" + this.id).addClass("ui-checkbox-off");
+					          
+					    	});   
+					                 
+					                
+						
+						
+						$(".lbl-" + id).hide();
+					$(".chk-" + id).hide();
+					}
+				
+					
+				}
+				
 				function Search(){
 					
 					var form = $("#frm-search");
@@ -268,7 +297,8 @@
 	       
 	       function GoCompany(id){
 	       	window.localStorage.setItem("CID", id);
-	       	window.location="company.html";
+	       	window.location = "company.html";
+	        //$.mobile.changePage( "company.html", { transition: "slid", changeHash: false, reloadPage: true });
 	       }
 	       
 	       function GoAdmin(){
