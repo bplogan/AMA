@@ -21,21 +21,22 @@
 			
 
 			 <a href="#mypanel" class="ui-btn ui-btn-inline ui-icon-menu-bars ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none">Without circle</a>
-			 <a href="admin.html" class="ui-btn ui-btn-inline ui-icon-gears ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none;margin-right:5px">Without circle</a>   
+			 <a href="javascript:GoAdmin()" class="ui-btn ui-btn-inline ui-icon-gears ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none;margin-right:5px">Without circle</a>   
 		
 		
 		<h6>Atlantic Metal Working Association</h6>
 	</div>
 
-	<div data-role="content" style="background-color:#E68538" >
+	<div data-role="content" >
 		
 		
 		
 		
-		<p style="text-align:center" id="loading"><img src="images/ajax-loader.gif" /></p>
+		
 	
 					
 		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="a" class="animClass" data-icon="next" ></ul>
+		<p style="text-align:center;margin-top:100px" id="loading"><img src="images/ajax-loader.gif" /></p>
 			
 	</div><!-- content -->
 
@@ -85,48 +86,59 @@
 	
 		$(document).delegate("#directoryPage", "pagebeforeshow", function() {
 			$("#loading").show();
-			GetServices();
+			//GetServices();
+			
+			if($('#ddl-province').children('option').length <= 0){
+				GetProvinces();
+			}
+			
+			if($('#company-list li').size() <= 0){
+			$("#company-list").empty();
+			var name = "";
+			var html = "";
+			var xml = window.localStorage.getItem("ML");
+			xmlDoc = $.parseXML(xml);
+			$xml = $(xmlDoc);
+			$xml.find("company").each(function() {
+				var id = $(this).find('id').text();
+				
+				name = $(this).find('name').text();
+				var address = $(this).find('address').text();
+				
+				
+				
+				$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+				$('#company-list').listview('refresh');
+				
+				
+			});
+			}
+			$("#loading").hide();
+			
 			
 		});
 		
-		$(document).delegate("#directoryPage", "pageshow", function() {
-			GetProvinces();
-			
-			Search();
-		});
+		
 				
-				function GetProvinces(){
-					$.ajax({
-							type : "POST",
-							url : "http://www.mycfit.ca/site_amwa_services/get_provinces.php",
-							data : {},
-							async: false,
-							dataType : "json",
-							success : function(data) {
-								
-								if(data.count > 0){
-									$("#ddl-province").empty();
-									$("#ddl-province").append("<option value='-1'>Select a Province</option>");
-									var html = "";
-									var xml = data.result;
-									xmlDoc = $.parseXML(xml);
-									$xml = $(xmlDoc);
-									$xml.find("province").each(function() {
-										var id = $(this).find('id').text();
-										var name = $(this).find('name').text();
-									    $("#ddl-province").append("<option value='" + id + "'>" + name + "</option>");
-								
-									});
-								
-									$("#ddl-province").selectmenu("refresh");
-								}
-								
-							},
-							error : function(xhr, errorType, exception) {
-								alert("GetProvinces" + xhr + errorType + exception);
-							}
-						});
-				}
+		function GetProvinces(){
+			alert("provinced");
+			$("#ddl-province").empty();
+			$("#ddl-province").append("<option value='-1'>Select a Province</option>");
+			var html = "";
+			var xml = window.localStorage.getItem("PROV");	
+			xmlDoc = $.parseXML(xml);
+			$xml = $(xmlDoc);
+			$xml.find("province").each(function() {
+				var id = $(this).find('id').text();
+				var name = $(this).find('name').text();
+			    $("#ddl-province").append("<option value='" + id + "'>" + name + "</option>");
+		
+			});
+		
+			$("#ddl-province").selectmenu("refresh");
+						
+			
+		}
 				
 				function GetCities(){
 					var prov = $("#ddl-province").val();
@@ -178,7 +190,7 @@
 								
 								if(data.count > 0){
 									
-									
+									$("#cg-services").html("");
 									var html = "";
 									var xml = data.result;
 									xmlDoc = $.parseXML(xml);
@@ -187,6 +199,7 @@
 										
 										var id = $(this).find('id').text();
 										var name = $(this).find('name').text();
+										
 										
     									$("#cg-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true'></input>");
 													  
@@ -256,6 +269,11 @@
 	       function GoCompany(id){
 	       	window.localStorage.setItem("CID", id);
 	       	window.location="company.html";
+	       }
+	       
+	       function GoAdmin(){
+	       	
+	       	$.mobile.changePage( "admin.html", { transition: "slideup", changeHash: false });
 	       }
 			
 

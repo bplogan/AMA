@@ -54,58 +54,51 @@
 	
 	function deviceReady() {
 		
-	   alert("ready");
-		//console.log("deviceReady");
-		
-		//StatusBar.overlaysWebView(false);
-		
-		var email = window.localStorage.getItem("email");
-		var pass = window.localStorage.getItem("pass");
-		alert("here");
-		alert(device.uuid);
-		
-		if(email == null || email == undefined){
-			//window.location="login.html";
-		}else{
-			
-			$.ajax({
-				type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/login.php",
-				async: false,
-				data : {'email' : email, 'pass' : pass},
-				dataType : "json",
-				success : function(data) {
-					if(data.userid > 0){
-						//window.location = "login.html";
-					}else{
-						//window.location = "directory.html";
-					}	
-				},
-				error : function(xhr, errorType, exception) {
-					alert("GetServices" + xhr + errorType + exception);
-				}
-			});
-			
-		}
-		
-		
-		
-		
-        	//var networkState = navigator.connection.type;
+	   
+			//StatusBar.overlaysWebView(false);
+			//var networkState = navigator.connection.type;
 			//if(networkState == Connection.NONE){
-			//	window.location = "err.html";
+			//	alert("You must have a working network connection to continue");
 			//}else{
-			
-			//window.location = "directory.html";
-			
-			
+				
+				$.ajax({
+					type : "POST",
+					url : "http://www.mycfit.ca/site_amwa_services/get_provinces.php",
+					data : {},
+					async: false,
+					dataType : "json",
+					success : function(data) {
+						window.localStorage.setItem("PROV", data.result);								
+					},
+					error : function(xhr, errorType, exception) {
+						alert("GetProvinces" + xhr + errorType + exception);
+					}
+				});
+				
+								
+				$.ajax({
+					type : "POST",
+					url : "http://mycfit.ca/site_amwa_services/get_companies.php?all=1",
+					async: false,
+					data : {},
+					dataType : "json",
+					success : function(data) {
+						
+						window.localStorage.setItem("ML", data.result);					
+						$.mobile.changePage( "directory.html", { transition: "slide", changeHash: false });	
+							
+					},
+					error : function(xhr, errorType, exception) {
+						alert("Search" + xhr + errorType + exception);
+					}
+				}); 
+				
+				
 			//}
 		
-		
-		
-		
 	}
-	       
+		
+       
 			
 
 			</script>			
