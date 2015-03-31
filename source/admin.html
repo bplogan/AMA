@@ -28,23 +28,23 @@
 
 	<div data-role="content">
 		
-		
-		
-		
-		<form id='frm-admin'>
+	<div style="text-align:center" id="loading"><img src="images/ajax-loader.gif" style="display:none" /></div>	
+	<div data-role="collapsible" data-inset="false" data-collapsed-icon="carat-d"  data-expanded-icon="carat-u" id="div-settings-container">
+	    <h3>Settings</h3>
+	   <form id='frm-admin'>
 			<fieldset>
-				<label for="txt-email">Your email</label>
-				<input type="email" name="txt-email" id="txt-email" />
+				<label for="txt-adminemail">Your email</label>
+				<input type="email" name="txt-adminemail" id="txt-adminemail" />
 			</fieldset>
 			
 			<fieldset>
-				<label for="txt-email">Member #</label>
+				<label for="txt-membernum">Member #</label>
 				<input type="text" name="txt-membernum" id="txt-membernum"  />
 			</fieldset>
 						
 			 <fieldset>
-				<label for="chk-email">Join the mailing list?</label>
-    			<input type="checkbox" data-role="flipswitch" name="chk-email" id="chk-email" data-on-text="Yes" data-off-text="No">
+				<label for="chk-join">Join the mailing list?</label>
+    			<input type="checkbox" data-role="flipswitch" name="chk-join" id="chk-join" data-on-text="Yes" data-off-text="No">
 			</fieldset>
 						
 			<fieldset>
@@ -61,6 +61,77 @@
 			</div>
 			
 		</form>
+	</div><!-- /collapsible -->
+	
+	<div data-role="collapsible" data-inset="false" style="display:none" id="div-info-container">
+	    <h3>Company Info</h3>
+	   	<div id="div-info">
+		
+			<form id="frmInfo">
+				<fieldset>
+					<label for="txt-name">Company Name</label>
+					<input type="text" name="txt-name" id="txt-name"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-address">Address</label>
+					<input type="text" name="txt-address" id="txt-address"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-city">City</label>
+					<input type="text" name="txt-city" id="txt-city"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="ddl-province">Province</label>
+					<select id="ddl-province"></select>
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-postal">Postal Code</label>
+					<input type="text" name="txt-postal" id="txt-postal"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-phone">Phone</label>
+					<input type="text" name="txt-phone" id="txt-phone"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-fax">Fax</label>
+					<input type="text" name="txt-fax" id="txt-fax"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-email">Email</label>
+					<input type="email" name="txt-email" id="txt-email"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-contact1">Contact 1</label>
+					<input type="text" name="txt-contact1" id="txt-contact1"  />
+				</fieldset>
+				
+				<fieldset>
+					<label for="txt-contact2">Contact 2</label>
+					<input type="text" name="txt-contact2" id="txt-contact2"  />
+				</fieldset>
+				
+				<fieldset>
+					<button type="submit">Save Info</button>
+				</fieldset>
+			</form>
+		
+		</div>
+	</div><!-- /collapsible -->
+	
+	<div data-role="collapsible" data-inset="false" style="display:none" id="div-services-container">
+	    <h3>Services</h3>
+	    <div id="div-services"></div>
+	</div><!-- /collapsible -->
+			
+		
 	
 		
 	</div><!-- content -->
@@ -76,7 +147,7 @@
 			<ul>
 				
 				<li>
-					<a href="javascript:Back()" data-ajax="false" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="background-color:#E68538;border:none"></a> 
+					<a href="#" data-rel="back" data-ajax="false" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="background-color:#E68538;border:none"></a> 
 				</li>
 				
 			</ul>
@@ -97,11 +168,181 @@
 	
 		$(document).delegate("#adminPage", "pagebeforeshow", function() {
 			
+			PrepPage();
+			
+			
 			
 		});
 		
+		function PrepPage(){
+			var EMAIL = window.localStorage.getItem("EMAIL");
+			var MID = window.localStorage.getItem("MID");
+			
+			
+			
+			if(EMAIL !== "" && MID > 0){
+				$.ajax({
+				type : "POST",
+					url : "http://mycfit.ca/site_amwa_services/get_admin.php",
+					async: false,
+					data : {'EMAIL' : EMAIL, 'MID' : MID},
+					dataType : "json",
+					success : function(data) {
+						
+						$("#txt-adminemail").val(data.email);
+						if(data.join > 0){
+							$('#chk-join').prop('checked', true);
+							$("#chk-join").val("on").flipswitch("refresh");
+						}
+						if(data.push > 0){
+							$('#chk-push').prop('checked', true);
+							$("#chk-push").val("on").flipswitch("refresh");
+						}
+						if(data.member > 0){
+							$("#txt-membernum").val(data.mid);
+						}
+						if(data.member > 0){
+							GetInfo();
+							GetServices();
+						}else{
+							$("#div-err").html(data.error);
+						}
+							
+					},
+					error : function(xhr, errorType, exception) {
+						alert("Search" + xhr + errorType + exception);
+					}
+				});
+			}else{
+				$( "#div-settings-container" ).collapsible( "expand" );
+
+			}
+		}
 		
-				
+		function GetInfo(){
+			$("#div-info-container").show();
+			var MID = window.localStorage.getItem("MID");
+			$.ajax({
+			type : "POST",
+				url : "http://mycfit.ca/site_amwa_services/get_company.php",
+				async: false,
+				data : {'MID' : MID},
+				dataType : "json",
+				success : function(data) {
+					
+					$("#txt-name").val(data.name);
+					$("#txt-address").val(data.address);
+					$("#txt-province").val(data.province);
+					$("#txt-city").val(data.city);
+					$("#txt-postal").val(data.postal);
+					$("#txt-phone").val(data.phone);
+					$("#txt-fax").val(data.fax);
+					$("#txt-email").val(data.email);
+					$("#txt-contact1").val(data.contact1);
+					$("#txt-contact2").val(data.contact2);
+					
+				},
+				error : function(xhr, errorType, exception) {
+					alert("Search" + xhr + errorType + exception);
+				}
+			});
+		}
+		
+		
+		function SaveInfo(){
+			
+			var MID = window.localStorage.getItem("MID");
+			alert(MID);
+			var name = $("#txt-name").val();
+			var address = $("#txt-address").val();
+			var province = 0;// $("#ddl-province").val();
+			var city = $("#txt-city").val();
+			var postal = $("#txt-postal").val();
+			var phone = $("#txt-phone").val();
+			var fax = $("#txt-fax").val();
+			var email = $("#txt-email").val();
+			var contact1 = $("#txt-contact1").val();
+			var contact2 = $("#txt-contact2").val();
+			$.ajax({
+			type : "POST",
+				url : "http://mycfit.ca/site_amwa_services/save_info.php",
+				async: false,
+				data : {'EMAIL' : email, 
+						'MID' : MID, 
+						'NAME' : name,
+						'ADDRESS' : address,
+						'PROV' : province,
+						'CITY' : city,
+						'POSTAL' : postal,
+						'PHONE' : phone,
+						'FAX' : fax,
+						'CONTACT1' : contact1,
+						'CONTACT2' : contact2
+						
+						},
+				dataType : "json",
+				success : function(data) {
+					alert(data.test);
+					$("#loading").hide();	
+				},
+				error : function(xhr, errorType, exception) {
+					alert("Search" + xhr + errorType + exception);
+				}
+			});
+		}
+		
+		function GetServices(){
+			$("#div-services-container").show();
+		}
+		
+		function SaveAdmin(){
+			
+			var email= $("#txt-adminemail").val();
+			var mid = $("#txt-membernum").val();
+			var join = 0;
+			if ($("#chk-join").is(':checked')) {
+				join = 1;
+			}
+			var push = 0;
+			if ($("#chk-push").is(':checked')) {
+				push = 1;
+			}
+			
+			$.ajax({
+			type : "POST",
+				url : "http://mycfit.ca/site_amwa_services/save_admin.php",
+				async: false,
+				data : {'EMAIL' : email, 'MID' : mid, 'JOIN' : join, 'PUSH' : push},
+				dataType : "json",
+				success : function(data) {
+					alert(data.mid);
+					window.localStorage.setItem("EMAIL", data.email);
+					if(data.member > 0){
+						window.localStorage.setItem("MID", data.mid);
+						alert(data.mid);
+					}	
+					$("#loading").hide();		
+				},
+				error : function(xhr, errorType, exception) {
+					alert("Search" + xhr + errorType + exception);
+				}
+			});
+			
+			
+			
+		}
+		
+		$('#frm-admin').submit(function (e) {
+			$("#loading").show();
+		    e.preventDefault();
+		    SaveAdmin();
+		});
+
+		$('#frmInfo').submit(function (e) {
+			$("#loading").show();
+		    e.preventDefault();
+		    SaveInfo();
+		});				
 				
 				
 
