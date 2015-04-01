@@ -50,7 +50,7 @@
 			
 			<select name="ddl-province" id="ddl-province" onchange="GetCities()" data-mini="true" style="border:none" ></select>
 			
-			<select name="ddl-city" id="ddl-city" data-mini="true"  ></select>
+			<select name="ddl-city" id="ddl-city" data-mini="true" onchange="CitySelected()" ></select>
 			  
 			<div id="cg-services" ></div>
 			
@@ -92,33 +92,62 @@
 			if($('#ddl-province').children('option').length <= 0){
 				GetProvinces();
 			}
-			
-		
+								
 			GetServices();
 			
 			
 			
 			if($('#company-list li').size() <= 0){
-			$("#company-list").empty();
-			var name = "";
-			var html = "";
-			var xml = window.localStorage.getItem("ML");
-			xmlDoc = $.parseXML(xml);
-			$xml = $(xmlDoc);
-			$xml.find("company").each(function() {
-				var id = $(this).find('id').text();
-				
-				name = $(this).find('name').text();
-				var address = decodeURI($(this).find('address').text());
-				
-				
-				
-				$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
-				$('#company-list').listview('refresh');
-				
-				
-			});
+				$("#company-list").empty();
+				var name = "";
+				var html = "";
+				var xml = window.localStorage.getItem("ML");
+				xmlDoc = $.parseXML(xml);
+				$xml = $(xmlDoc);
+				$xml.find("company").each(function() {
+					var id = $(this).find('id').text();
+					
+					name = $(this).find('name').text();
+					var address = decodeURI($(this).find('address').text());
+					
+					
+					
+					$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+					$('#company-list').listview('refresh');
+					
+					
+				});
 			}
+			
+			if(window.localStorage.getItem("SEARCHED") !== ""){
+				if(localStorage["fARR"] !== ""){
+					
+					var arr = JSON.parse(localStorage["fARR"]);
+					
+					for	(index = 0; index < arr.length; index++) {
+					   
+					    	var id = arr[index];
+					    	
+					    	if(id !== ""){
+					    		var thediv = "";
+					    		$("#" + id).prop('checked', true);
+					    		$("#" + id).checkboxradio();
+					    		$("#" + id).checkboxradio( "refresh" );
+					    		
+					    		if( id.indexOf("-") > 0){
+					    			
+					    		}else{
+					    			thediv = id.replace("chk","");
+					    			$(".lbl-" + thediv).show();
+					    			$(".chk-" + thediv).show();
+					    		}
+					    		
+					    	}
+					    
+					}
+				}
+			}
+			
 			
 			$("#loading").hide();
 			
@@ -147,9 +176,9 @@
 			
 		}
 				
-				function GetCities(){
+		function GetCities(){
 					var prov = $("#ddl-province").val();
-					
+					window.localStorage.setItem("fPROV", prov);
 					$.ajax({
 							type : "POST",
 							url : "http://mycfit.ca/site_amwa_services/get_cities.php",
@@ -185,7 +214,11 @@
 						});
 				}
 			
-				function GetServices(){
+		function CitySelected(){
+			var city = $("#ddl-city").val();
+			window.localStorage.setItem("fCITY", city);
+		}		
+function GetServices(){
 					
 					$("#cg-services").html("");
 					var html = "";
@@ -206,7 +239,7 @@
 						$subs.find("sub").each(function() {
 							var sid = $(this).find('sub_id').text();
 							var sname = $(this).find('sub_name').text();
-							$("#cg-services").append("<label id='lbl-" + id + "-" + sid + "' class='lblsub lbl-" + id + "' lbl style='display:none' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input class='chksub chk-" + id + "' style='display:none' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true'></input>");
+							$("#cg-services").append("<label id='lbl-" + id + "-" + sid + "' class='lblsub lbl-" + id + "' lbl style='display:none' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input onchange='SubSelected(this.id)' class='chksub chk-" + id + "' style='display:none' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true'></input>");
 							$("#chk-" + id + "-" + sid).checkboxradio();
 						});
 						$("#cg-services").append("</div>");
@@ -222,9 +255,61 @@
 				});
 
 				function ShowSubs(id){
+						
+						var arr;
+						var bfound = false;
+						var theid = "chk" + id;
+						if(localStorage["fARR"] == ""){
+							
+						 	arr = [theid];
+							
+						}else{
+							
+							arr = JSON.parse(localStorage["fARR"]);
+							for	(index = 0; index < arr.length; index++) {
+							
+							    if(arr[index] == theid){
+							    	bfound = true;
+							    	arr[index] = "";
+							    	
+							    }
+							}
+							if(bfound == false){
+								arr[arr.length] = theid;
+								console.log(arr);
+							}else{
+								//remove all subs from array
+								$('.chk-' + id).each(function(){
+							    		
+							    for	(index = 0; index < arr.length; index++) {
+							
+								    if(arr[index] == $(this).attr('id')){
+								    	arr[index] = "";
+								    	
+								    }
+								}
+							    		
+							    		
+							    });
+							}
+						}
+						
+						
+						
+						localStorage["fARR"] = JSON.stringify(arr);
+						console.log(arr);
+					
+					
+					
+					
 					if ($("#chk" + id).is(':checked')) {
 						$(".lbl-" + id).show();
-					$(".chk-" + id).show();
+						$(".chk-" + id).show();
+						
+						
+					
+						
+						
 					}else{
 						
 						  $("input.chk-" + id).each(function(i) 
@@ -257,6 +342,31 @@
 					
 				}
 				
+				
+				function SubSelected(id){
+					var bfound = false;
+					var arr;
+					if(localStorage["fARR"] == undefined || localStorage["fARR"] == null){
+						arr = [id];
+						
+					}else{
+						arr = JSON.parse(localStorage["fARR"]);
+						
+							for	(index = 0; index < arr.length; index++) {
+												
+							    if(arr[index] == id){
+							    	bfound = true;
+							    	arr[index] = "";
+							    }
+							}
+							if(bfound == false){
+								arr[arr.length] = id;
+							}
+					}
+					localStorage["fARR"] = JSON.stringify(arr);
+					console.log(arr);
+				}
+				
 				function Search(){
 					
 					var form = $("#frm-search");
@@ -268,7 +378,7 @@
 							data : form.serialize(),
 							dataType : "json",
 							success : function(data) {
-								
+								window.localStorage.setItem("ML",data.result);
 								var name = "";
 								var html = "";
 								var xml = data.result;
@@ -283,6 +393,7 @@
 									
 									
 									$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+									window.localStorage.setItem("SEARCHED","Y");
 								});
 								$("#loading").hide();
 								
