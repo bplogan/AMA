@@ -55,7 +55,9 @@
 	
 	function deviceReady() {
 		
-	   
+	   		localStorage["fARR"] = "";
+			window.localStorage.setItem("SEARCHED","");
+			
 			StatusBar.overlaysWebView(false);
 			var networkState = navigator.connection.type;
 			if(networkState == Connection.NONE){
