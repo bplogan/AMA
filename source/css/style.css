@@ -4,23 +4,7 @@ ul{padding:0;margin:0}
 div{text-shadow:none !important}
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}
 
-.ui-icon-filter:after{
-	background:#000000 url("../images/filter.png") 50% 50% no-repeat; background-size: 32px 32px; 
-	box-shadow: none;
-    -webkit-box-shadow: none;
-    height:36px;
-    width:36px;
-  
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-	.ui-icon-filter:after {
-		background:#000000  url("../images/filter.png") 50% 50% no-repeat;
-		background-size: 36px 36px;
-		background-color:#000000;
-		
-	}
-	
-}
+
 
 .ui-icon-goback:after{
 	background:#000000 url("../images/goback.png") 50% 50% no-repeat; background-size: 32px 32px; 
@@ -107,6 +91,34 @@ div{text-shadow:none !important}
 }
 
 
+.ui-icon-filter:after{
+	background:#E68538 url("../images/filter.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	box-shadow: none;
+    -moz-border-radius:0px;
+    -webkit-border-radius:0px;
+    border-radius:0px;
+    width:22px;
+    height:22px;
+    margin-top:-12px;/*Adjust this value to position the icon*/
+  
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-filter:after {
+		background:#E68538  url("../images/filter.png") 50% 50% no-repeat;
+		background-size: 36px 36px;
+		background-color:#E68538 !important;
+		-moz-border-radius:0px;
+	   -webkit-border-radius:0px;
+	    border-radius:0px;
+	    width:22px;
+	    height:22px;
+	    margin-top:-12px;/*Adjust this value to position the icon*/
+		
+	}
+	
+}
+
+
 
 
 
@@ -143,7 +155,7 @@ div{text-shadow:none !important}
 
 .ui-select .ui-btn{
 	border:none !important;
-	border-bottom:1px solid #000 !important;
+	border-bottom:1px solid #EDEDED !important;
 	background-color:#FFF !important;
 	border-color:red;
 }
@@ -198,5 +210,7 @@ div{text-shadow:none !important}
 .ui-checkbox .lblsub, .ui-checkbox .chksub{
 	margin-left:30px;
 }
-
+p.info-text{
+	margin:0;padding:0;font-size:12px;font-weight:bold;
+}
 
