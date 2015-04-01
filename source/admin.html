@@ -31,8 +31,8 @@
 	<div data-role="content">
 		
 	<div style="text-align:center" id="loading"><img src="images/ajax-loader.gif" style="display:none" /></div>	
-	<div data-role="collapsibleset" data-inset="false" data-collapsed-icon="carat-d"  data-expanded-icon="carat-u" id="div-settings-container">
-		<div data-role="collapsible">
+	<div data-role="collapsibleset" data-inset="false" data-collapsed-icon="carat-d"  data-expanded-icon="carat-u">
+		<div data-role="collapsible" id="div-settings-container">
 	    <h3>Settings</h3>
 		<p class='info-text'>Enter your email address for our mailing list and select the notifications you want to receive.<br />For members: enter your email address and member number to see more options.</p>
 	   <form id='frm-admin'>
@@ -67,7 +67,7 @@
 		</form>
 	</div><!-- /collapsible -->
 	
-	<div data-role="collapsible" >
+	<div data-role="collapsible" id="div-info-container" style="display:none" >
 	    <h3>Company Info</h3>
 		<p class="info-text">Manage your company info, click the save button at the bottom to save changes.</p>
 	   	<div id="div-info">
@@ -131,7 +131,7 @@
 		</div>
 	</div><!-- /collapsible -->
 	
-	<div data-role="collapsible" >
+	<div data-role="collapsible" id="div-services-container" style="display:none" >
 	    <h3>Services</h3>
 		<p class="info-text">Check or un-check the desired services.  Changes are saved automatically.</p>
 	    <div id="div-services"></div>
@@ -225,7 +225,8 @@
 					}
 				});
 			}else{
-				$( "#div-settings-container" ).collapsible( "expand" );
+				 $( "#div-settings-container" ).collapsible( "expand" );
+				
 
 			}
 			
@@ -430,7 +431,7 @@
 		
 		function DeleteService(id){
 			var MID = window.localStorage.getItem("MID");
-			alert(id + "," + MID);
+			
 			$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_amwa_services/delete_company_service.php",
@@ -439,7 +440,7 @@
 					dataType : "json",
 					success : function(data) {
 						
-						alert(data.test);
+					
 							
 					},
 					error : function(xhr, errorType, exception) {
@@ -516,11 +517,11 @@
 				data : {'EMAIL' : email, 'MID' : mid, 'JOIN' : join, 'PUSH' : push},
 				dataType : "json",
 				success : function(data) {
-					alert(data.mid);
+					
 					window.localStorage.setItem("EMAIL", data.email);
 					if(data.member > 0){
 						window.localStorage.setItem("MID", data.mid);
-						alert(data.mid);
+						PrepPage();
 					}	
 					$("#loading").hide();		
 				},
