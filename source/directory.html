@@ -33,23 +33,21 @@
 	<div data-role="content" >
 		
 		
-		<div style="margin-top:100px"><img src="images/logo.png" width="60%" /></div>
-		<div id="div-search">
-		<form id="search-form">
-			<fieldset>
-				<input type="search" id="txt-search" placeholder="search the directory" style="padding-top:10px;padding-bottom:10px;" />
-			</fieldset>
-		</form>		
 		
-		<div style="text-align:center"><a href="#filter-panel" class="ui-btn ui-btn-inline ui-icon-search ui-btn-icon-left ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#101010;border:none;color:#FFF">Advanced Search</a></div>
+		<div id="div-search">
+			<div style="margin-top:100px"><img src="images/logo.png" width="60%" /></div>
+			<form id="search-form">
+				<fieldset>
+					<input type="search" id="txt-search" placeholder="search the directory" style="padding-top:10px;padding-bottom:10px;" />
+				</fieldset>
+			</form>		
+			
+			<div style="text-align:center"><a href="#filter-panel" class="ui-btn ui-btn-inline ui-icon-search ui-btn-icon-left ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#101010;border:none;color:#FFF">Advanced Search</a></div>
 		</div>
 		
-		
-		
-		
-		
-		<div id="company-list" style="display:none">
-		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="a" class="animClass" data-icon="next" ></ul>
+		<div id="div-company-list" style="display:none;margin-top:30px">
+			<img src="images/logo.png" width="60%" />
+		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="a" class="animClass" data-icon="next"></ul>
 		<p style="text-align:center;margin-top:100px" id="loading"><img src="images/ajax-loader.gif" /></p>
 		</div>	
 	</div><!-- content -->
@@ -397,7 +395,8 @@ function GetServices(){
 									var address = $(this).find('address').text();
 									
 									
-									
+									$("#div-company-list").show();
+									$("#div-search").hide();
 									$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
 									window.localStorage.setItem("SEARCHED","Y");
 								});
