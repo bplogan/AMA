@@ -36,6 +36,19 @@ div{text-shadow:none !important}
 	
 }
 
+
+.ui-icon-carat-r:after{
+	background-color:#2A2A2A;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	.ui-icon-carat-r:after {
+		background-color:#2A2A2A;
+	}
+	
+}
+
+
+
 .ui-icon-menu-bars:after{
 	background:#101010 url("../images/menu-bars.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
@@ -247,3 +260,10 @@ html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui
 	border:none;
 	border-bottom:10px solid #252525;
 }
+
+.center {
+   position: absolute;
+   text-align:center;
+}
+
+

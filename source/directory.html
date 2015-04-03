@@ -33,7 +33,7 @@
 
 			<!-- <a href="#filter-panel" class="ui-btn ui-btn-inline ui-icon-filter ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#101010;border:none">Without circle</a> --> 
 			
-			 <a href="javascript:GoAdmin()" class="ui-btn ui-btn-right ui-icon-gears ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="border:none;margin-right:5px;background-color:#252525">Without circle</a>   
+			 <a href="javascript:GoAdmin()" class="ui-btn ui-btn-right ui-icon-gear ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="border:none;background-color:#252525">Without circle</a>   
 			
 		
 		
@@ -46,7 +46,7 @@
 		
 		
 		<div id="div-search">
-			<div style="margin-top:100px;text-align:center"><img src="images/logo.png" width="70%" /></div>
+			<div style="margin-top:100px;text-align:center"><img src="images/logo.png" width="95%" style="max-width:400px" /></div>
 			<form id="search-form">
 				<fieldset>
 					<input type="search" id="txt-search" placeholder="search the directory" style="padding-top:10px;padding-bottom:10px;" />
@@ -57,8 +57,8 @@
 		</div>
 		
 		<div id="div-company-list" style="display:none;margin-top:30px">
-			<img src="images/logo.png" width="60%" />
-		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="b" class="animClass" data-icon="next"></ul>
+			<div style="text-align:center"><img src="images/logo.png" width="80%" /></div>
+		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="b" class="animClass" data-icon="carat-r" ></ul>
 		<p style="text-align:center;margin-top:100px" id="loading"><img src="images/ajax-loader.gif" /></p>
 		</div>	
 	</div><!-- content -->
@@ -110,32 +110,35 @@
 			
 			
 			
-			/*
-			if($('#company-list li').size() <= 0){
-				$("#company-list").empty();
-				var name = "";
-				var html = "";
-				var xml = window.localStorage.getItem("ML");
-				xmlDoc = $.parseXML(xml);
-				$xml = $(xmlDoc);
-				$xml.find("company").each(function() {
-					var id = $(this).find('id').text();
-					
-					name = $(this).find('name').text();
-					var address = decodeURI($(this).find('address').text());
-					
-					
-					
-					$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
-					$('#company-list').listview('refresh');
-					
-					
-				});
-			}
-			*/
+			
+		
+			
 			
 			if(window.localStorage.getItem("SEARCHED") !== ""){
 				if(localStorage["fARR"] !== ""){
+					
+					$("#div-search").hide();
+					$("#div-company-list").show();
+					
+						if($('#company-list li').size() <= 0){
+							$("#company-list").empty();
+							var name = "";
+							var html = "";
+							var xml = window.localStorage.getItem("ML");
+							xmlDoc = $.parseXML(xml);
+							$xml = $(xmlDoc);
+							$xml.find("company").each(function() {
+								var id = $(this).find('id').text();
+								name = $(this).find('name').text();
+								var address = decodeURI($(this).find('address').text());
+								$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+								$('#company-list').listview('refresh');
+								
+							});
+						}
+					
+					
+					
 					
 					var arr = JSON.parse(localStorage["fARR"]);
 					
