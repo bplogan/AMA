@@ -16,15 +16,25 @@
 
 <div id="directoryPage" data-role="page" data-theme="a"  >
 	
-	<div data-role="header" data-position="fixed" data-theme="b">
+	<div data-role="header" data-position="fixed" data-theme="a">
 		
 			
 
-			 <!-- <a href="#mypanel" class="ui-btn ui-btn-inline ui-icon-menu-bars ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none">Without circle</a> -->
-			 <a href="javascript:GoAdmin()" class="ui-btn ui-btn-right ui-icon-gears ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none;margin-right:5px">Without circle</a>   
+			<a href="#filter-panel" class="ui-btn ui-btn-inline ui-icon-filter ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#303030;border:none">Without circle</a> 
+			
+			 <a href="javascript:GoAdmin()" class="ui-btn ui-btn-right ui-icon-gears ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#303030;border:none;margin-right:5px">Without circle</a>   
+			
 		
 		
-		<h6>AMWA</h6>
+		<div style="text-align:center;margin-top:40px"><img src="images/logo.png" width="90%" /></div>
+		<div id="div-search" style="background-color:#303030;padding-left:10px;padding-right:10px;">
+		<form id="search-form">
+			<fieldset>
+				<input type="search" id="txt-search" placeholder="search the directory" style="padding-top:10px;padding-bottom:10px;" />
+			</fieldset>
+		</form>		
+		</div>
+		
 	</div>
 
 	<div data-role="content" >
@@ -33,11 +43,10 @@
 		
 		
 		
-		
-					
+		<div id="company-list" style="display:none">
 		<ul id="company-list"  data-role="listview" data-filter="true" data-inset="false" data-theme="a" class="animClass" data-icon="next" ></ul>
 		<p style="text-align:center;margin-top:100px" id="loading"><img src="images/ajax-loader.gif" /></p>
-			
+		</div>	
 	</div><!-- content -->
 
 
@@ -60,17 +69,7 @@
 		</div><!-- /panel -->
 
 
-	<div data-role="footer" data-position="fixed">
-		<div data-role="navbar">
-			<ul>
-				
-				<li>
-					<a href="#filter-panel" class="ui-link ui-btn ui-icon-filter ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="background-color:#E68538;border:none;margin-top:15px"></a> 
-				</li>
-				
-			</ul>
-		</div>
-	</div><!-- footer -->
+	
 
 	 <!--
 	<div data-role="panel" data-position="left" data-position-fixed="false" data-display="reveal" id="mypanel" data-theme="a">
@@ -97,6 +96,7 @@
 			
 			
 			
+			/*
 			if($('#company-list li').size() <= 0){
 				$("#company-list").empty();
 				var name = "";
@@ -118,6 +118,7 @@
 					
 				});
 			}
+			*/
 			
 			if(window.localStorage.getItem("SEARCHED") !== ""){
 				if(localStorage["fARR"] !== ""){

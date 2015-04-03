@@ -15,9 +15,9 @@
 
 <body>
 
-<div id="adminPage" data-role="page" data-theme="a"  >
+<div id="editPage" data-role="page" data-theme="a"  >
 	
-	<div data-role="header" data-position="fixed" data-theme="b">
+	<div data-role="header" data-position="fixed" data-theme="a">
 		<!-- 
 		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
 			<a href="#mypanel" class="ui-btn ui-btn-inline ui-icon-menu-bars ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none">Without circle</a>
@@ -32,40 +32,7 @@
 		
 	<div style="text-align:center" id="loading"><img src="images/ajax-loader.gif" style="display:none" /></div>	
 	<div data-role="collapsibleset" data-inset="false" data-collapsed-icon="carat-d"  data-expanded-icon="carat-u">
-		<div data-role="collapsible" id="div-settings-container">
-	    <h3>Settings</h3>
-		<p class='info-text'>Enter your email address for our mailing list and select the notifications you want to receive.<br />For members: enter your email address and member number to see more options.</p>
-	   <form id='frm-admin'>
-			<fieldset>
-				<label for="txt-adminemail">Your email</label>
-				<input type="email" name="txt-adminemail" id="txt-adminemail" />
-			</fieldset>
-			
-			<fieldset>
-				<label for="txt-membernum">Member # (for members)</label>
-				<input type="text" name="txt-membernum" id="txt-membernum"  />
-			</fieldset>
-						
-			 <fieldset>
-				<label for="chk-join">Join the mailing list?</label>
-    			<input type="checkbox" data-role="flipswitch" name="chk-join" id="chk-join" data-on-text="Yes" data-off-text="No">
-			</fieldset>
-						
-			<fieldset>
-				<label for="chk-push">Receive app notifications?</label>
-    			<input type="checkbox" data-role="flipswitch" name="chk-push" id="chk-push" data-on-text="Yes" data-off-text="No">
-			</fieldset>
-			
-			<fieldset>
-				<button type="submit">Save</button>
-			</fieldset>
-			
-			<div id="div-admin">
-				
-			</div>
-			
-		</form>
-	</div><!-- /collapsible -->
+		
 	
 	<div data-role="collapsible" id="div-info-container" style="display:none" >
 	    <h3>Company Info</h3>
@@ -73,6 +40,11 @@
 	   	<div id="div-info">
 		
 			<form id="frmInfo">
+				<fieldset>
+					<label for="chk-active">Active</label>
+					<input type="checkbox" name="chk-active" id="chk-active"  />
+				</fieldset>
+				
 				<fieldset>
 					<label for="txt-name">Company Name</label>
 					<input type="text" name="txt-name" id="txt-name"  />
@@ -180,7 +152,7 @@
 
 	<script type="text/javascript">
 	
-		$(document).delegate("#adminPage", "pagebeforeshow", function() {
+		$(document).delegate("#editPage", "pagebeforeshow", function() {
 			
 			PrepPage();
 			
@@ -191,55 +163,14 @@
 		function PrepPage(){
 			var EMAIL = window.localStorage.getItem("EMAIL");
 			var MID = window.localStorage.getItem("MID");
-			
-			
-			
-			if(EMAIL !== "" && MID > 0){
-				$.ajax({
-				type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/get_admin.php",
-					async: false,
-					data : {'EMAIL' : EMAIL, 'MID' : MID},
-					dataType : "json",
-					success : function(data) {
+			GetProvinces();
+			GetInfo();
+			GetServices();
 						
-						$("#txt-adminemail").val(data.email);
-						if(data.join > 0){
-							$('#chk-join').prop('checked', true);
-							$("#chk-join").val("on").flipswitch("refresh");
-						}
-						if(data.push > 0){
-							$('#chk-push').prop('checked', true);
-							$("#chk-push").val("on").flipswitch("refresh");
-						}
-						if(data.member > 0){
-							$("#txt-membernum").val(data.mid);
-						}
-						if(data.member > 0){
-							GetProvinces();
-							GetInfo();
-							GetServices();
-							
-						}else{
-							$("#div-err").html(data.error);
-						}
-							
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
-				});
-			}else{
-				 $( "#div-settings-container" ).collapsible( "expand" );
-				
-
-			}
-			
-			
-			
 			
 		}
-				
+		
+		
 		function GetProvinces(){
 			
 			$("#ddl-province").empty();
@@ -259,7 +190,8 @@
 						
 			
 		}
-				
+		
+		
 		function GetInfo(){
 			$("#div-info-container").show();
 			var MID = window.localStorage.getItem("MID");
@@ -291,7 +223,8 @@
 				}
 			});
 		}
-				
+		
+		
 		function SaveInfo(){
 			
 			var MID = window.localStorage.getItem("MID");
@@ -387,7 +320,8 @@
 			});
 			$("#div-services-container").show();
 		}
-				
+		
+		
 		function ShowSubs(id){
 			if ($("#chk" + id).is(':checked')) {
 				$(".lbl-" + id).show();
@@ -414,7 +348,8 @@
 		
 			
 		}
-				
+		
+		
 		function AddService(id){
 			var MID = window.localStorage.getItem("MID");
 			$.ajax({
@@ -451,7 +386,8 @@
 					}
 				}); 
 		}
-				
+		
+		
 		function AddSub(sid,ssid){
 			if ($("#chk-" + sid + "-" + ssid).is(':checked')) {
 				AddSubService(sid,ssid);
@@ -497,7 +433,8 @@
 					}
 				}); 
 		}
-				
+		
+		
 		function SaveAdmin(){
 			
 			var email= $("#txt-adminemail").val();
@@ -522,11 +459,6 @@
 					window.localStorage.setItem("EMAIL", data.email);
 					if(data.member > 0){
 						window.localStorage.setItem("MID", data.mid);
-						if(data.admin > 0){
-							window.localStorage.setItem("ADMIN", data.admin);
-						}else{
-							window.localStorage.setItem("Admin", "0");
-						}
 						PrepPage();
 					}	
 					$("#loading").hide();		

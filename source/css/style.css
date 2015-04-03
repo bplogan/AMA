@@ -1,10 +1,12 @@
-[data-role=header]{background-color:#E68538 !important;height:45px !important;border:none !important;}
-[data-role=footer]{background-color:#E68538 !important;position:fixed !important; height:50px !important}
+[data-role=header]{background-color:#303030 !important;border:none !important;}
+[data-role=footer]{background-color:#303030 !important;position:fixed !important; height:50px !important}
 
 div{text-shadow:none !important}
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}
 
-
+.ui-input-search{
+	color:#303030 !important;
+}
 
 .ui-icon-goback:after{
 	background:#000000 url("../images/goback.png") 50% 50% no-repeat; background-size: 32px 32px; 
@@ -38,7 +40,7 @@ div{text-shadow:none !important}
 }
 
 .ui-icon-menu-bars:after{
-	background:#E68538 url("../images/menu-bars.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	background:#303030 url("../images/menu-bars.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
     -moz-border-radius:0px;
     -webkit-border-radius:0px;
@@ -49,9 +51,9 @@ div{text-shadow:none !important}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.ui-icon-menu-bars:after {
-		background:#E68538  url("../images/menu-bars.png") 50% 50% no-repeat;
+		background:#303030  url("../images/menu-bars.png") 50% 50% no-repeat;
 		background-size: 36px 36px;
-		background-color:#E68538 !important;
+		background-color:#303030 !important;
 		-moz-border-radius:0px;
 	   -webkit-border-radius:0px;
 	    border-radius:0px;
@@ -65,7 +67,7 @@ div{text-shadow:none !important}
 
 
 .ui-icon-gears:after{
-	background:#E68538 url("../images/gear.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	background:#303030 url("../images/gear.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
     -moz-border-radius:0px;
     -webkit-border-radius:0px;
@@ -77,9 +79,9 @@ div{text-shadow:none !important}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.ui-icon-gears:after {
-		background:#E68538  url("../images/gear.png") 50% 50% no-repeat;
+		background:#303030  url("../images/gear.png") 50% 50% no-repeat;
 		background-size: 36px 36px;
-		background-color:#E68538 !important;
+		background-color:#303030 !important;
 		-moz-border-radius:0px;
 	   -webkit-border-radius:0px;
 	    border-radius:0px;
@@ -92,7 +94,7 @@ div{text-shadow:none !important}
 
 
 .ui-icon-filter:after{
-	background:#E68538 url("../images/filter.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	background:#303030 url("../images/filter.png") 50% 50% no-repeat; background-size: 32px 32px; 
 	box-shadow: none;
     -moz-border-radius:0px;
     -webkit-border-radius:0px;
@@ -104,9 +106,9 @@ div{text-shadow:none !important}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.ui-icon-filter:after {
-		background:#E68538  url("../images/filter.png") 50% 50% no-repeat;
+		background:#303030  url("../images/filter.png") 50% 50% no-repeat;
 		background-size: 36px 36px;
-		background-color:#E68538 !important;
+		background-color:#303030 !important;
 		-moz-border-radius:0px;
 	   -webkit-border-radius:0px;
 	    border-radius:0px;
@@ -123,7 +125,7 @@ div{text-shadow:none !important}
 
 
 .ui-icon-phone:after{
-	background:#E68538 url("../images/phone.png") 50% 50% no-repeat; background-size: 16px 16px; 
+	background:#303030 url("../images/phone.png") 50% 50% no-repeat; background-size: 16px 16px; 
 	box-shadow: none;
     -moz-border-radius:0px;
     -webkit-border-radius:0px;
@@ -133,9 +135,9 @@ div{text-shadow:none !important}
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.ui-icon-phone:after {
-		background:#E68538  url("../images/phone.png") 50% 50% no-repeat; background-size:32px 32px;
+		background:#303030  url("../images/phone.png") 50% 50% no-repeat; background-size:32px 32px;
 		background-size: 36px 36px;
-		background-color:#E68538 !important;
+		background-color:#303030 !important;
 		-moz-border-radius:0px;
 	   -webkit-border-radius:0px;
 	    border-radius:0px;
@@ -148,7 +150,7 @@ div{text-shadow:none !important}
 
 
 .ui-filterable{
-	background-color:#E68538;
+	background-color:#303030;
 	
 }
 
@@ -240,4 +242,9 @@ p.info-text{
 
 label{
 	font-weight:bold !important;
+}
+
+
+::-webkit-input-placeholder {
+   color:#303030;
 }
