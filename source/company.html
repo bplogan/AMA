@@ -17,7 +17,7 @@
 
 <div id="companyPage" data-role="page" data-theme="b"  >
 	
-	
+	<a href="javascript:EditCompany()" class="ui-btn ui-btn-right ui-icon-edit ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="border:none;background-color:#252525;">Without circle</a>   
 
 	<div data-role="content">
 		
@@ -44,7 +44,7 @@
 				
 				<li>
 					
-					<a href="#" data-rel="back" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="background-color:#101010;border:none"></a> 
+					<a href="#" id="btn-back" data-rel="back" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="background-color:#101010;border:none"></a> 
 				</li>
 				
 			</ul>
@@ -69,8 +69,20 @@
 			var $window = $(window);
 			$("map_canvas").width($window.width()) ;
 			GetCompany();
+			if(window.localStorage.getItem("ADMIN") == "Y"){
+				$("#btn-edit").show();
+			}else{
+				$("#btn-edit").hide();
+			}
 			
 		});
+		
+		function EditCompany(){
+			var CID = window.localStorage.getItem("CID");
+			window.localStorage.setItem("ECID", CID);
+			window.location = "edit.html";
+			
+		}
 		
 		$(document).delegate("#companyPage", "pageshow", function() {
 		

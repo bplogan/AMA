@@ -15,18 +15,9 @@
 
 <body>
 
-<div id="editPage" data-role="page" data-theme="a"  >
+<div id="editPage" data-role="page" data-theme="b"  >
 	
-	<div data-role="header" data-position="fixed" data-theme="a">
-		<!-- 
-		<div data-role="controlgroup" data-type="horizontal" class="ui-btn-left">
-			<a href="#mypanel" class="ui-btn ui-btn-inline ui-icon-menu-bars ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="background-color:#E68538;border:none">Without circle</a>
-			
-		</div>
-		 --> 
-		<img class=" ui-btn-right " src="images/logo.png" height="40px" width="40px" />
-		<h6>AMWA</h6>
-	</div>
+	
 
 	<div data-role="content">
 		
@@ -154,15 +145,33 @@
 	
 		$(document).delegate("#editPage", "pagebeforeshow", function() {
 			
-			PrepPage();
+			var CID = window.localStorage.getItem("ECID");
+			$.ajax({
+			type : "POST",
+				url : "http://mycfit.ca/site_amwa_services/get_member_id.php",
+				async: false,
+				data : {'CID' : CID},
+				dataType : "json",
+				success : function(data) {
+					
+					window.localStorage.setItem("EMID",data.mid);
+					window.localStorage.setItem("EACTIVE",data.active);
+					PrepPage();
+
+				},
+				error : function(xhr, errorType, exception) {
+					alert("Search" + xhr + errorType + exception);
+				}
+			});
 			
+			
+						
 			
 			
 		});
 		
 		function PrepPage(){
-			var EMAIL = window.localStorage.getItem("EMAIL");
-			var MID = window.localStorage.getItem("MID");
+			
 			GetProvinces();
 			GetInfo();
 			GetServices();
@@ -194,12 +203,13 @@
 		
 		function GetInfo(){
 			$("#div-info-container").show();
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
+			
 			$.ajax({
 			type : "POST",
 				url : "http://mycfit.ca/site_amwa_services/get_company.php",
 				async: false,
-				data : {'MID' : MID},
+				data : {'ECID' : CID},
 				dataType : "json",
 				success : function(data) {
 					
@@ -227,7 +237,7 @@
 		
 		function SaveInfo(){
 			
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
 			
 			var name = $("#txt-name").val();
 			var address = $("#txt-address").val();
@@ -245,7 +255,7 @@
 				url : "http://mycfit.ca/site_amwa_services/save_info.php",
 				async: false,
 				data : {'EMAIL' : email, 
-						'MID' : MID, 
+						'ECID' : CID, 
 						'NAME' : name,
 						'ADDRESS' : address,
 						'PROV' : province,
@@ -270,12 +280,12 @@
 		}
 		
 		function GetServices(){
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
 			$.ajax({
 			type : "POST",
 				url : "http://mycfit.ca/site_amwa_services/get_services.php",
 				async: false,
-				data : {'MID' : MID},
+				data : {'ECID' : CID},
 				dataType : "json",
 				success : function(data) {
 					
@@ -351,12 +361,12 @@
 		
 		
 		function AddService(id){
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
 			$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_amwa_services/add_company_service.php",
 					async: false,
-					data : {'SID' : id, 'MID' : MID},
+					data : {'SID' : id, 'ECID' : CID},
 					dataType : "json",
 					success : function(data) {
 						
@@ -368,13 +378,13 @@
 		}
 		
 		function DeleteService(id){
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
 			
 			$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_amwa_services/delete_company_service.php",
 					async: false,
-					data : {'SID' : id, 'MID' : MID},
+					data : {'SID' : id, 'ECID' : CID},
 					dataType : "json",
 					success : function(data) {
 						
@@ -397,12 +407,12 @@
 		}
 		
 		function AddSubService(id,sid){
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
 			$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_amwa_services/add_company_sub_service.php",
 					async: false,
-					data : {'SID' : id, 'MID' : MID,'SSID' : sid},
+					data : {'SID' : id, 'ECID' : CID,'SSID' : sid},
 					dataType : "json",
 					success : function(data) {
 						
@@ -416,12 +426,12 @@
 		}
 		
 		function DeleteSubService(id,sid){
-			var MID = window.localStorage.getItem("MID");
+			var CID = window.localStorage.getItem("ECID");
 			$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_amwa_services/delete_company_sub_service.php",
 					async: false,
-					data : {'SID' : id, 'MID' : MID, 'SSID' : sid},
+					data : {'SID' : id, 'ECID' : CID, 'SSID' : sid},
 					dataType : "json",
 					success : function(data) {
 						
@@ -435,48 +445,7 @@
 		}
 		
 		
-		function SaveAdmin(){
-			
-			var email= $("#txt-adminemail").val();
-			var mid = $("#txt-membernum").val();
-			var join = 0;
-			if ($("#chk-join").is(':checked')) {
-				join = 1;
-			}
-			var push = 0;
-			if ($("#chk-push").is(':checked')) {
-				push = 1;
-			}
-			
-			$.ajax({
-			type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/save_admin.php",
-				async: false,
-				data : {'EMAIL' : email, 'MID' : mid, 'JOIN' : join, 'PUSH' : push},
-				dataType : "json",
-				success : function(data) {
-					
-					window.localStorage.setItem("EMAIL", data.email);
-					if(data.member > 0){
-						window.localStorage.setItem("MID", data.mid);
-						PrepPage();
-					}	
-					$("#loading").hide();		
-				},
-				error : function(xhr, errorType, exception) {
-					alert("Search" + xhr + errorType + exception);
-				}
-			});
-			
-			
-			
-		}
-		
-		$('#frm-admin').submit(function (e) {
-			$("#loading").show();
-		    e.preventDefault();
-		    SaveAdmin();
-		});
+
 
 		$('#frmInfo').submit(function (e) {
 			$("#loading").show();
@@ -487,7 +456,7 @@
 				
 
 function Back(){
-	window.location = "directory.html";
+	window.location = "company.html";
 }
 
 				
