@@ -111,6 +111,10 @@
 
 	<script type="text/javascript">
 	
+	
+	
+		
+	
 		$(document).delegate("#directoryPage", "pagebeforeshow", function() {
 			$("#loading").show();
 						
@@ -122,6 +126,14 @@
 			
 			
 			
+
+				
+			$("#txt-search").keypress(function (e) {
+		   		if(e.which == 13) {
+		   			e.preventDefault();
+        		SearchText();
+    		}
+			});
 			
 		
 			
@@ -151,7 +163,7 @@
 					
 					
 					
-					
+					if(localStorage["fARR"] !== "0"){
 					var arr = JSON.parse(localStorage["fARR"]);
 					
 					for	(index = 0; index < arr.length; index++) {
@@ -174,6 +186,7 @@
 					    		
 					    	}
 					    
+					}
 					}
 				}
 			}
@@ -408,6 +421,51 @@ function GetServices(){
 							data : form.serialize(),
 							dataType : "json",
 							success : function(data) {
+								window.localStorage.setItem("ML",data.result);
+								var name = "";
+								var html = "";
+								var xml = data.result;
+								xmlDoc = $.parseXML(xml);
+								$xml = $(xmlDoc);
+								$xml.find("company").each(function() {
+									var id = $(this).find('id').text();
+									
+									name = $(this).find('name').text();
+									var address = $(this).find('address').text();
+									
+									
+									$("#div-company-list").show();
+									$("#div-search").hide();
+									$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+									window.localStorage.setItem("SEARCHED","Y");
+								});
+								$("#loading").hide();
+								
+								
+								
+								
+								
+								$('#company-list').listview('refresh');				
+							},
+							error : function(xhr, errorType, exception) {
+								alert("Search" + xhr + errorType + exception);
+							}
+						}); 
+					 
+				}
+				
+					function SearchText(){
+					
+					var text = encodeURI($("#txt-search").val());
+					$('#company-list').empty();
+					$.ajax({
+							type : "POST",
+							url : "http://mycfit.ca/site_amwa_services/get_companies.php",
+							async: false,
+							data : {'TEXT' : text},
+							dataType : "json",
+							success : function(data) {
+								localStorage["fARR"] = "0";
 								window.localStorage.setItem("ML",data.result);
 								var name = "";
 								var html = "";
