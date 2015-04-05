@@ -266,7 +266,7 @@ function GetServices(){
 					$("#cg-services").html("");
 					var html = "";
 					var xml = window.localStorage.getItem("SERVICES");
-					alert(xml);
+					
 					xmlDoc = $.parseXML(xml);
 					$xml = $(xmlDoc);
 					$xml.find("service").each(function() {
@@ -347,9 +347,16 @@ function GetServices(){
 					
 					
 					if ($("#chk" + id).is(':checked')) {
-						$(".lbl-" + id).show();
-						$(".chk-" + id).show();
 						
+						$(".lbl-" + id).each(function(i, obj) {
+							alert("ff");
+						    $(this).show();
+						});
+						$(".chk-" + id).each(function(i, obj) {
+						    $(this).show();
+						});
+						
+					
 						
 					
 						
