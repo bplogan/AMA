@@ -278,6 +278,7 @@ function GetServices(){
 						
 						
 						var subs =  $(this).find('subs').html();
+						alert(subs);
 						xmlDoc2 = $.parseXML(subs);
 						$subs = $(xmlDoc2);
 						$subs.find("sub").each(function() {
