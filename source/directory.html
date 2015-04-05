@@ -276,17 +276,17 @@ function GetServices(){
 						$("#cg-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true' onchange='ShowSubs(" + id + ")'></input>");
 						$("#chk" + id).checkboxradio();
 						
-						$("#cg-services").append("<div id='sub" + id + "' style='display:none'>");
+						
 						var subs =  $(this).find('subs').html();
 						xmlDoc2 = $.parseXML(subs);
 						$subs = $(xmlDoc2);
 						$subs.find("sub").each(function() {
 							var sid = $(this).find('sub_id').text();
 							var sname = $(this).find('sub_name').text();
-							$("#cg-services").append("<label id='lbl-" + id + "-" + sid + "' class='lblsub lbl-" + id + "' lbl style='display:none' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input onchange='SubSelected(this.id)' class='chksub chk-" + id + "' style='display:none' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true'></input>");
+							$("#cg-services").append("<label id='lbl-" + id + "-" + sid + "' class='lbl-" + id + " lblsub ' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input onchange='SubSelected(this.id)' class='chk-" + id + " chksub ' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true'></input>");
 							$("#chk-" + id + "-" + sid).checkboxradio();
 						});
-						$("#cg-services").append("</div>");
+						
 					});
 					//$("#cg-services").controlgroup( "refresh" );
 											
@@ -347,8 +347,7 @@ function GetServices(){
 					
 					
 					if ($("#chk" + id).is(':checked')) {
-						$("#sub" + id).show();
-						alert("checked");
+						
 						$(".lbl-" + id).each(function(i, obj) {
 							alert("ff");
 						    $(this).show();
