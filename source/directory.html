@@ -281,8 +281,10 @@ function GetServices(){
 						xmlDoc2 = $.parseXML(subs);
 						$subs = $(xmlDoc2);
 						$subs.find("sub").each(function() {
+							alert("1");
 							var sid = $(this).find('sub_id').text();
 							var sname = $(this).find('sub_name').text();
+							
 							$("#cg-services").append("<label id='lbl-" + id + "-" + sid + "' class='lbl-" + id + " lblsub ' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input onchange='SubSelected(this.id)' class='chk-" + id + " chksub ' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true'></input>");
 							$("#chk-" + id + "-" + sid).checkboxradio();
 						});
