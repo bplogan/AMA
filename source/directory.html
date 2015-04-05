@@ -347,7 +347,8 @@ function GetServices(){
 					
 					
 					if ($("#chk" + id).is(':checked')) {
-						
+						$("#sub" + id).show();
+						alert("checked");
 						$(".lbl-" + id).each(function(i, obj) {
 							alert("ff");
 						    $(this).show();
