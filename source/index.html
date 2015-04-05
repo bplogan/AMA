@@ -75,17 +75,15 @@ $(document).on('pageshow','#loadPage', function(e,data){
 	
 	function deviceReady() {
 		
-	   		localStorage["fARR"] = "";
-			window.localStorage.setItem("SEARCHED","");
-			
-			
-			StatusBar.overlaysWebView(false);
-			var networkState = navigator.connection.type;
-			if(networkState == Connection.NONE){
-				alert("You must have a working network connection to continue");
-			}else{
-				
-				$.ajax({
+	   
+		console.log("deviceReady");
+		localStorage["fARR"] = "";
+		window.localStorage.setItem("SEARCHED","");
+		
+		//StatusBar.overlaysWebView(false);
+		
+		
+		$.ajax({
 					type : "POST",
 					url : "http://www.mycfit.ca/site_amwa_services/get_provinces.php",
 					data : {},
@@ -113,9 +111,11 @@ $(document).on('pageshow','#loadPage', function(e,data){
 							alert("GetServices" + xhr + errorType + exception);
 						}
 					});
-								
-				$.ajax({
-					type : "POST",
+		
+		
+		
+		$.ajax({
+					type : "GET",
 					url : "http://mycfit.ca/site_amwa_services/get_companies.php?all=1",
 					async: false,
 					data : {},
@@ -130,19 +130,20 @@ $(document).on('pageshow','#loadPage', function(e,data){
 						alert("Search" + xhr + errorType + exception);
 					}
 				}); 
-				
-				
+		
+		
+		
+		
+        	
 			
-					
-				
-				
-				
-				
-				
-			}
+		
+			
+			
+			
+		
+		
 		
 	}
-		
        
 			
 
