@@ -266,6 +266,7 @@ function GetServices(){
 					$("#cg-services").html("");
 					var html = "";
 					var xml = window.localStorage.getItem("SERVICES");
+					alert(xml);
 					xmlDoc = $.parseXML(xml);
 					$xml = $(xmlDoc);
 					$xml.find("service").each(function() {
@@ -349,7 +350,7 @@ function GetServices(){
 						$(".lbl-" + id).show();
 						$(".chk-" + id).show();
 						
-						alert("CHECKED");
+						
 					
 						
 						
