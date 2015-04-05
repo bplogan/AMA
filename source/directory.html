@@ -278,11 +278,13 @@ function GetServices(){
 						
 						
 						var subs =  $(this).find('subs').html();
-						alert(subs);
+						
+						 						
+						
 						xmlDoc2 = $.parseXML(subs);
-						$subs = $(xmlDoc2);
-						$subs.find("sub").each(function() {
-							alert("1");
+						$subsxml = $(xmlDoc2);
+						$subsxml.find("sub").each(function() {
+							alert("each");
 							var sid = $(this).find('sub_id').text();
 							var sname = $(this).find('sub_name').text();
 							
