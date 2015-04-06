@@ -104,7 +104,7 @@ $(document).on('pageshow','#loadPage', function(e,data){
 						data : {},
 						dataType : "json",
 						success : function(data) {
-							
+							window.localStorage.setItem("SERVICESHTML", data.html);
 							window.localStorage.setItem("SERVICES",data.result);														
 						},
 						error : function(xhr, errorType, exception) {

@@ -263,6 +263,14 @@
 		}		
 function GetServices(){
 					
+					$("#cg-services").html(window.localStorage.getItem("SERVICESHTML"));
+					
+					$('input[type=checkbox]').each(function () {
+		          		$("#" + this.id).checkboxradio();
+					});
+					
+					
+					/*
 					$("#cg-services").html("");
 					var html = "";
 					var xml = window.localStorage.getItem("SERVICES");
@@ -275,16 +283,13 @@ function GetServices(){
 						var name = $(this).find('name').text();
 						$("#cg-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true' onchange='ShowSubs(" + id + ")'></input>");
 						$("#chk" + id).checkboxradio();
-						
-						
+					
 						var subs =  $(this).find('subs').html();
-						
-						 						
 						
 						xmlDoc2 = $.parseXML(subs);
 						$subsxml = $(xmlDoc2);
 						$subsxml.find("sub").each(function() {
-							alert("each");
+							
 							var sid = $(this).find('sub_id').text();
 							var sname = $(this).find('sub_name').text();
 							
@@ -292,8 +297,9 @@ function GetServices(){
 							$("#chk-" + id + "-" + sid).checkboxradio();
 						});
 						
+						
 					});
-					//$("#cg-services").controlgroup( "refresh" );
+					*/
 											
 				}
 				
@@ -354,7 +360,7 @@ function GetServices(){
 					if ($("#chk" + id).is(':checked')) {
 						
 						$(".lbl-" + id).each(function(i, obj) {
-							alert("ff");
+						
 						    $(this).show();
 						});
 						$(".chk-" + id).each(function(i, obj) {
