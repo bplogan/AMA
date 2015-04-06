@@ -258,10 +258,14 @@ label{
 
 html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
 	border-color:#F9F9F9;
-	border:none;
+	border:none !important;
 	border-bottom:10px solid #252525;
 }
-
+.ui-body-b, .ui-page-theme-b .ui-body-inherit, html .ui-bar-b .ui-body-inherit, html .ui-body-b .ui-body-inherit, html body .ui-group-theme-b .ui-body-inherit, html .ui-panel-page-container-b{
+	
+	border-top:none;
+	border-bottom:10px solid #252525;
+}
 .center {
    position: absolute;
    text-align:center;

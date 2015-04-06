@@ -77,7 +77,9 @@ $(document).on('pageshow','#loadPage', function(e,data){
 		
 	   
 		console.log("deviceReady");
-		localStorage["fARR"] = "";
+		localStorage["fARR"] = "0";
+		window.localStorage.setItem("fPROV","0");
+		window.localStorage.setItem("fCITY","0");
 		window.localStorage.setItem("SEARCHED","");
 		
 		//StatusBar.overlaysWebView(false);

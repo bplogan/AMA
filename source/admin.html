@@ -336,8 +336,12 @@
 				data : {'MID' : MID},
 				dataType : "json",
 				success : function(data) {
+					$("#div-services").html(data.result);
+					$('input[type=checkbox]').each(function () {
+		          		$("#" + this.id).checkboxradio();
+					});
 					
-					
+					/*
 					var html = "";
 					var xml = data.result;
 					xmlDoc = $.parseXML(xml);
@@ -370,6 +374,8 @@
 						}
 						
 					});
+					
+					*/
 					
 				},
 				error : function(xhr, errorType, exception) {
