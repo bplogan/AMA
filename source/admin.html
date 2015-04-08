@@ -9,7 +9,7 @@
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<script src="main.js"></script>
+		<script src="js/main.js"></script>
 	
 	</head>
 
@@ -318,7 +318,7 @@
 						},
 				dataType : "json",
 				success : function(data) {
-					
+					showErrorMessage("Company Info saved successfully!", $("#err"), 0);
 					$("#loading").hide();	
 				},
 				error : function(xhr, errorType, exception) {
@@ -527,6 +527,7 @@
 						PrepPage();
 					}	
 					$("#loading").hide();		
+					showErrorMessage("Save was successful!", $("#err"), 0);
 				},
 				error : function(xhr, errorType, exception) {
 					alert("Search" + xhr + errorType + exception);

@@ -165,7 +165,7 @@
 									
 									$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
 								}else{
-									$("#company-list").append("<li style='color:#C0C0C0'>" + name + "</li>");
+									$("#company-list").append("<li style='color:#777777'>" + name + "</li>");
 								}
 								
 								
@@ -494,7 +494,7 @@ function GetServices(){
 									if(member == "1" || admin == "1"){
 										$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
 									}else{
-										$("#company-list").append("<li >" + name + "</li>");
+										$("#company-list").append("<li style='color:#777777' >" + name + "</li>");
 									}
 									
 									window.localStorage.setItem("SEARCHED","Y");

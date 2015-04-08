@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/jqm-datebox-1.4.5.core.min.js"></script>
 		<script type="text/javascript" src=" js/jqm-datebox-1.4.5.mode.flipbox.min.js"></script>
 		<link rel="stylesheet" href="css/jqm-datebox-1.4.5.min.css" />
-		<script src="main.js"></script>
+		<script src="js/main.js"></script>
 	
 	</head>
 
@@ -306,7 +306,7 @@
 						},
 				dataType : "json",
 				success : function(data) {
-					alert(data.test);
+					showErrorMessage("Company Info saved successfully!", $("#err"), 0);
 					$("#loading").hide();	
 				},
 				error : function(xhr, errorType, exception) {
