@@ -526,7 +526,12 @@
 							window.localStorage.setItem("ADMIN", "0");
 						}
 						PrepPage();
-					}	
+					}
+					if(data.admin > 0){
+							window.localStorage.setItem("ADMIN", data.admin);
+						}else{
+							window.localStorage.setItem("ADMIN", "0");
+						}	
 					$("#loading").hide();		
 					showErrorMessage("Save was successful!", $("#err"), 0);
 				},
