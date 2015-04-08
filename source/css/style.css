@@ -270,5 +270,9 @@ html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui
    position: absolute;
    text-align:center;
 }
+.animClass {
+	-webkit-transform: translate3d(0, 0, 0);
+	/* more specific animation properties here */
+}
 
 

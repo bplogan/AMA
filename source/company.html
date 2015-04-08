@@ -25,10 +25,10 @@
 		
 		
 		
-	<div id="info"></div>
+	<div id="info" class="animClass"></div>
 					
 		
-	<div id="map_canvas" style="height:300px"></div>
+	<div id="map_canvas" style="height:300px" class="animClass"></div>
 		
 	</div><!-- content -->
 
@@ -101,7 +101,7 @@
 							dataType : "json",
 							success : function(data) {
 								
-								alert(data.result);
+							
 								$("#info").html(data.result);
 								
 								address=data.address;
