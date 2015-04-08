@@ -250,6 +250,9 @@
 					$("#txt-website").val(data.website);
 					if(data.active == "1"){
 						$("#chk-active").prop('checked', true).checkboxradio('refresh');
+						$("#lbDate").val(data.datefrom);
+						$("#lbDate2").val(data.dateto);
+						
 					}
 					
 				},
@@ -282,6 +285,7 @@
 			var dfrom = $("#lbDate").val();
 			var dto = $("#lbDate2").val();
 			
+		
 			$.ajax({
 			type : "POST",
 				url : "http://mycfit.ca/site_amwa_services/save_info.php",
@@ -294,18 +298,20 @@
 						'CITY' : city,
 						'POSTAL' : postal,
 						'PHONE' : phone,
+						'TO' : dto,
 						'FAX' : fax,
 						'CONTACT1' : contact1,
 						'CONTACT2' : contact2,
 						'ACTIVE' : active,
 						'FROM' : dfrom,
-						'TO' : dto,
+						
 						'WEBSITE' : website
 						
 						
 						},
 				dataType : "json",
 				success : function(data) {
+					
 					showErrorMessage("Company Info saved successfully!", $("#err"), 0);
 					$("#loading").hide();	
 				},
