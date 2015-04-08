@@ -79,7 +79,7 @@
 			  
 			<div id="cg-services" ></div>
 			
-			<button type="submit" id="btn-search" data-mini="true" data-rel="close">Apply Filters</button>
+			<button type="submit" id="btn-search" data-mini="true" data-rel="close">Search</button>
 				
 		</form>
 		</div><!-- /panel -->
@@ -520,7 +520,7 @@ function GetServices(){
 				}
 				
 					function SearchText(){
-					
+					var admin = window.localStorage.getItem("ADMIN");
 					var text = encodeURI($("#txt-search").val());
 					$('#company-list').empty();
 					$.ajax({
@@ -541,14 +541,18 @@ function GetServices(){
 									$xml = $(xmlDoc);
 									$xml.find("company").each(function() {
 										var id = $(this).find('id').text();
-										
+										var member = $(this).find('member').text();
 										name = $(this).find('name').text();
 										var address = $(this).find('address').text();
 										
 										
 										$("#div-company-list").show();
 										$("#div-search").hide();
+										if(member == "1" || admin == "1"){
 										$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+										}else{
+											$("#company-list").append("<li style='color:#777777' >" + name + "</li>");
+										}
 										window.localStorage.setItem("SEARCHED","Y");
 									});
 									$("#loading").hide();
