@@ -516,7 +516,7 @@
 				data : {'EMAIL' : email, 'MID' : mid, 'JOIN' : join, 'PUSH' : push},
 				dataType : "json",
 				success : function(data) {
-				
+					
 					window.localStorage.setItem("EMAIL", data.email);
 					if(data.member > 0){
 						window.localStorage.setItem("MID", data.mid);
