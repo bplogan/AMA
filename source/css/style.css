@@ -1,7 +1,7 @@
 
 [data-role=header]{border:none !important;}
 [data-role=footer]{position:fixed !important; height:50px !important}
-
+[data-role=panel]{background-color:#CCCCCC !important}
 
 div{text-shadow:none !important}
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}

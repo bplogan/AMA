@@ -674,7 +674,7 @@ html .ui-bar-c .ui-slider-track .ui-btn-active,
 html .ui-body-c .ui-slider-track .ui-btn-active,
 html body .ui-group-theme-c .ui-slider-track .ui-btn-active,
 html body div.ui-slider-track.ui-body-c .ui-btn-active {
-	background-color: #2c2d2f /*{c-active-background-color}*/;
+	background-color: #FD7400 /*{c-active-background-color}*/;
 	border-color: #3d3e41 /*{c-active-border}*/;
 	color: #ffffff /*{c-active-color}*/;
 	text-shadow: 0 /*{c-active-shadow-x}*/ 0 /*{c-active-shadow-y}*/ 0 /*{c-active-shadow-radius}*/ #444444 /*{c-active-shadow-color}*/;
