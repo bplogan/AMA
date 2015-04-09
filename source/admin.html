@@ -247,7 +247,7 @@
 				
 				<li>
 					
-					<a href="#" id="btn-back" onclick="GoBack()" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none"></a> 
+					<a href="#" id="btn-back" data-rel="back" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important"></a> 
 				</li>
 				
 			</ul>
@@ -754,6 +754,11 @@ function Back(){
 	window.location = "directory.html";
 }
 
+	function DateSet(){
+			$("#lbDate2").prop('disabled', false);
+			$("#lbDate2").attr("min", $("#lbDate").val());
+			$("#lbDate2").datebox('applyMinMax');
+		}
 				
 			
 	      

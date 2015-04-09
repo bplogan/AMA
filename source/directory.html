@@ -71,7 +71,7 @@
 			  
 			<div id="cg-services" ></div>
 			
-			<button type="submit" id="btn-search" data-mini="true" data-rel="close">Search</button>
+			<button type="submit" id="btn-search" data-mini="true" data-rel="close" style="margin-top:25px">Search</button>
 				
 		</form>
 		</div><!-- /panel -->
@@ -83,7 +83,7 @@
 				
 				<li>
 					
-					<a href="#" id="btn-back" onclick="GoBack()" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none"></a> 
+					<a href="#" id="btn-back" onclick="GoBack()" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important;"></a> 
 				</li>
 				
 			</ul>
@@ -119,7 +119,7 @@
     		}
 			});
 			
-		
+			
 			
 			
 			if(window.localStorage.getItem("SEARCHED") !== ""){
@@ -145,7 +145,7 @@
 								var member = $(this).find('member').text();
 								if(member == "1" || admin == "1"){
 									
-									$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+									$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + "<span style='color:#2a2a2a'>" + name + "</span><br >" +  address  + "</a></li>");
 								}else{
 									$("#company-list").append("<li style='color:#777777'>" + name + "</li>");
 								}
@@ -198,7 +198,7 @@
 			
 			
 			$("#loading").hide();
-			
+			$("#btn-search").width(202);
 			
 		});
 		
@@ -454,7 +454,7 @@ function GetServices(){
 							dataType : "json",
 							success : function(data) {
 								
-							
+							alert(data.result);
 								if(data.count > 0){
 								var admin = window.localStorage.getItem("ADMIN");
 								
@@ -475,7 +475,7 @@ function GetServices(){
 									$("#div-search").hide();
 									
 									if(member == "1" || admin == "1"){
-										$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
+										$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + "<span style='color:#2a2a2a'>" + name + "</span><br >" +  address + "</a></li>");
 									}else{
 										$("#company-list").append("<li style='color:#777777' >" + name + "</li>");
 									}

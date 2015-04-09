@@ -1,7 +1,7 @@
 
 [data-role=header]{border:none !important;}
-[data-role=footer]{position:fixed !important; height:50px !important}
-[data-role=panel]{background-color:#CCCCCC !important}
+[data-role=footer]{position:fixed !important; height:50px !important;background-color:#2f2f2f !important}
+[data-role=panel]{background-color:#2f2f2f !important}
 
 div{text-shadow:none !important}
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}
@@ -180,7 +180,7 @@ div{text-shadow:none !important}
 
 .company .name{
 	font-size:22px;	
-	color
+	color:#F27118;
 }
 
 .company .phone{
@@ -261,17 +261,6 @@ label{
 	
 }
 
-
-html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
-	border-color:#F9F9F9;
-	border:none !important;
-	border-bottom:10px solid #353535;
-}
-.ui-body-b, .ui-page-theme-b .ui-body-inherit, html .ui-bar-b .ui-body-inherit, html .ui-body-b .ui-body-inherit, html body .ui-group-theme-b .ui-body-inherit, html .ui-panel-page-container-b{
-	
-	border-top:none;
-	border-bottom:5px solid #353535;
-}
 .center {
    position: absolute;
    text-align:center;
@@ -281,4 +270,10 @@ html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui
 	/* more specific animation properties here */
 }
 
+.ui-checkbox{border:none !important;margin-bottom:5px !important;}
 
+.ui-checkbox .ui-btn{font-weight:normal !important}
+
+.ui-listview .ui-btn {border:none !important; margin-bottom:5px !important}
+
+.ui-li-static{background-color:#C0C0C0 !important;margin-bottom:5px !important}
