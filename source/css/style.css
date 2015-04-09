@@ -1,12 +1,14 @@
+
 [data-role=header]{border:none !important;}
 [data-role=footer]{position:fixed !important; height:50px !important}
+
 
 div{text-shadow:none !important}
 .ui-checkbox{margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0}
 
 
 .ui-icon-goback:after{
-	background:#000000 url("../images/goback.png") 50% 50% no-repeat; background-size: 32px 32px; 
+	background:#000000 url("../images/goback.png") 50% 50% no-repeat; background-size: 32px 32px;  
 	box-shadow: none;
     -webkit-box-shadow: none;
     margin-top:10px;
@@ -259,16 +261,20 @@ label{
 html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
 	border-color:#F9F9F9;
 	border:none !important;
-	border-bottom:10px solid #252525;
+	border-bottom:10px solid #353535;
 }
 .ui-body-b, .ui-page-theme-b .ui-body-inherit, html .ui-bar-b .ui-body-inherit, html .ui-body-b .ui-body-inherit, html body .ui-group-theme-b .ui-body-inherit, html .ui-panel-page-container-b{
 	
 	border-top:none;
-	border-bottom:10px solid #252525;
+	border-bottom:5px solid #353535;
 }
 .center {
    position: absolute;
    text-align:center;
+}
+.animClass {
+	-webkit-transform: translate3d(0, 0, 0);
+	/* more specific animation properties here */
 }
 
 

@@ -17,7 +17,7 @@
 
 <div id="companyPage" data-role="page" data-theme="c"  >
 	
-	<a href="javascript:EditCompany()" class="ui-btn ui-btn-right ui-icon-edit ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="border:none;background-color:#252525;">Without circle</a>   
+	<a href="javascript:EditCompany()" id="btn-edit" class="ui-btn ui-btn-right ui-icon-edit ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" style="border:none;">Without circle</a>   
 
 	<div data-role="content">
 		
@@ -25,10 +25,10 @@
 		
 		
 		
-	<div id="info"></div>
+	<div id="info" class="animClass"></div>
 					
 		
-	<div id="map_canvas" style="height:300px"></div>
+	<div id="map_canvas" style="height:300px" class="animClass"></div>
 		
 	</div><!-- content -->
 
@@ -60,7 +60,7 @@
 			var $window = $(window);
 			$("map_canvas").width($window.width()) ;
 			GetCompany();
-			if(window.localStorage.getItem("ADMIN") == "Y"){
+			if(window.localStorage.getItem("ADMIN") == "1"){
 				$("#btn-edit").show();
 			}else{
 				$("#btn-edit").hide();
@@ -92,7 +92,7 @@
 							dataType : "json",
 							success : function(data) {
 								
-								
+							
 								$("#info").html(data.result);
 								
 								address=data.address;
