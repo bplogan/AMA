@@ -207,6 +207,10 @@ div{text-shadow:none !important}
 	height:16px;
 	width:16px;
 }
+.company .products{
+	height:16px;
+	width:16px;
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
 	.company .contact{
 	height:18px;

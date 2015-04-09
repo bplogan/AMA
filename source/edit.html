@@ -104,6 +104,11 @@
 				</fieldset>
 				
 				<fieldset>
+					<label for="txt-products">Notes/Products</label>
+					<textarea name="txt-products" id="txt-products"></textarea>
+				</fieldset>
+				
+				<fieldset>
 					<button type="submit">Save Info</button>
 				</fieldset>
 			</form>
@@ -244,6 +249,8 @@
 						
 					}
 					
+					$("#txt-products").val( decodeURI(data.products) );
+					$("#txt-products").textinput('refresh');
 				},
 				error : function(xhr, errorType, exception) {
 					alert("Search" + xhr + errorType + exception);
@@ -273,8 +280,8 @@
 			}
 			var dfrom = $("#lbDate").val();
 			var dto = $("#lbDate2").val();
+			var products = encodeURI($("#txt-products").val());
 			
-		
 			$.ajax({
 			type : "POST",
 				url : "http://mycfit.ca/site_amwa_services/save_info.php",
@@ -293,7 +300,7 @@
 						'CONTACT2' : contact2,
 						'ACTIVE' : active,
 						'FROM' : dfrom,
-						
+						'PRODUCTS' : products,
 						'WEBSITE' : website
 						
 						
