@@ -4,7 +4,7 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.loganwebconsulting.amwa"
-        version   = "1.0.0">
+        version   = "1.0.15">
 
     
     
@@ -34,7 +34,7 @@
     -->
    
     <gap:plugin name="com.pushbots.push" version="1.2.1" source="plugins.cordova.io" />
-    
+     <gap:plugin name="org.apache.cordova.statusbar" />
 		
 	<gap:splash src="ios/screen-iphone-portrait.png"          gap:platform="ios"     width="320" height="480" />
 	<gap:splash src="ios/screen-iphone-portrait-2x.png"       gap:platform="ios"     width="640" height="960" />
