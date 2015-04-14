@@ -84,6 +84,13 @@ $(document).on('pageshow','#loadPage', function(e,data){
 		
 		StatusBar.overlaysWebView(false);
 		
+		if(PushbotsPlugin.isiOS()){
+			PushbotsPlugin.initializeiOS("552d0937177959dc088b45b7");
+		}
+		if(PushbotsPlugin.isAndroid()){
+			PushbotsPlugin.initializeAndroid("552d0937177959dc088b45b7", "122598448016");
+		}
+				
 		
 		$.ajax({
 					type : "POST",
