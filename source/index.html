@@ -91,7 +91,26 @@ $(document).on('pageshow','#loadPage', function(e,data){
 		if(PushbotsPlugin.isAndroid()){
 			PushbotsPlugin.initializeAndroid("552d0937177959dc088b45b7", "122598448016");
 		}
-			
+		
+		var news = false;
+		var uuid = device.uuid;	
+		alert(uuid);
+		$.ajax({
+					type : "POST",
+					url : "http://www.mycfit.ca/site_amwa_services/check_news.php",
+					data : {},
+					async: false,
+					dataType : "json",
+					success : function(data) {
+						if(data.count > 0){
+							news = true;
+						}								
+					},
+					error : function(xhr, errorType, exception) {
+						alert("GetProvinces" + xhr + errorType + exception);
+					}
+				});
+		
 		
 		$.ajax({
 					type : "POST",
@@ -132,8 +151,13 @@ $(document).on('pageshow','#loadPage', function(e,data){
 					dataType : "json",
 					success : function(data) {
 						
-						window.localStorage.setItem("ML", data.result);					
-						window.location = "directory.html";
+						window.localStorage.setItem("ML", data.result);		
+						if(news == true){
+							window.location = "news.html";
+						}else{
+							window.location = "directory.html";
+						}			
+						
 							
 					},
 					error : function(xhr, errorType, exception) {
