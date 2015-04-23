@@ -94,15 +94,16 @@ $(document).on('pageshow','#loadPage', function(e,data){
 		
 		var news = false;
 		var uuid = device.uuid;	
-		alert(uuid);
+		window.localStorage.setItem("UUID", uuid);
+		
 		$.ajax({
 					type : "POST",
 					url : "http://www.mycfit.ca/site_amwa_services/check_news.php",
-					data : {},
+					data : {'uuid' : uuid},
 					async: false,
 					dataType : "json",
 					success : function(data) {
-						if(data.count > 0){
+						if(data.count == "1"){
 							news = true;
 						}								
 					},
