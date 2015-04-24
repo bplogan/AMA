@@ -15,758 +15,759 @@
 		<script type="text/javascript" src=" js/jqm-datebox-1.4.5.mode.flipbox.min.js"></script>
 		<link rel="stylesheet" href="css/jqm-datebox-1.4.5.min.css" />
 		<script src="js/main.js"></script>
-	
+
 	</head>
 
-<body>
+	<body>
 
-<div id="adminPage" data-role="page" data-theme="c"  >
-	
-	
+		<div id="adminPage" data-role="page" data-theme="c"  >
 
-	<div data-role="content">
-	Administration
-	<div style="text-align:center" id="loading"><img src="images/ajax-loader.gif" style="display:none" /></div>	
-	<div data-role="collapsibleset" data-inset="false" data-collapsed-icon="carat-d"  data-expanded-icon="carat-u" class="animClass">
-		<div data-role="collapsible" id="div-settings-container">
-	    <h3>Settings</h3>
-		<p class='info-text'>Enter your email address for our mailing list.<br />For members: enter your email address and member number to see more options.</p>
-	   <form id='frm-admin'>
-			<fieldset>
-				<label for="txt-adminemail">Your email</label>
-				<input type="email" name="txt-adminemail" id="txt-adminemail" />
-			</fieldset>
-			
-			<fieldset>
-				<label for="txt-membernum">Member # (for members)</label>
-				<input type="text" name="txt-membernum" id="txt-membernum"  />
-			</fieldset>
-			
-			<!-- 			
-			 <fieldset>
-				<label for="chk-join">Join the mailing list?</label>
-    			<input type="checkbox" data-role="flipswitch" name="chk-join" id="chk-join" data-on-text="Yes" data-off-text="No">
-			</fieldset>
+			<div data-role="content">
+				Administration
+				<div style="text-align:center" id="loading"><img src="images/ajax-loader.gif" style="display:none" />
+				</div>
+				<div data-role="collapsibleset" data-inset="false" data-collapsed-icon="carat-d"  data-expanded-icon="carat-u" class="animClass">
+					<div data-role="collapsible" id="div-settings-container">
+						    <h3>Settings</h3>
+						<p class='info-text'>
+							Enter your email address for our mailing list.
+							<br />
+							For members: enter your email address and member number to see more options.
+						</p>
+						   
+						<form id='frm-admin'>
+							<fieldset>
+								<label for="txt-adminemail">Your email</label>
+								<input type="email" name="txt-adminemail" id="txt-adminemail" />
+							</fieldset>
+
+							<fieldset>
+								<label for="txt-membernum">Member # (for members)</label>
+								<input type="text" name="txt-membernum" id="txt-membernum"  />
+							</fieldset>
+
 						
-			<fieldset>
-				<label for="chk-push">Receive app notifications?</label>
-    			<input type="checkbox" data-role="flipswitch" name="chk-push" id="chk-push" data-on-text="Yes" data-off-text="No">
-			</fieldset>
-			-->
-			<fieldset>
-				<button type="submit">Save</button>
-			</fieldset>
-			
-			<div id="div-admin">
-				
-			</div>
-			
-		</form>
-	</div><!-- /collapsible -->
-	
-	<div data-role="collapsible" id="div-info-container" style="display:none" >
-	    <h3>Company Info</h3>
-		<p class="info-text">Manage your company info, click the save button at the bottom to save changes.</p>
-	   	<div id="div-info">
-		
-			<form id="frmInfo">
-				<fieldset>
-					<label for="txt-name">Company Name</label>
-					<input type="text" name="txt-name" id="txt-name"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-address">Address</label>
-					<input type="text" name="txt-address" id="txt-address"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-city">City</label>
-					<input type="text" name="txt-city" id="txt-city"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="ddl-province">Province</label>
-					<select id="ddl-province"></select>
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-postal">Postal Code</label>
-					<input type="text" name="txt-postal" id="txt-postal"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-phone">Phone</label>
-					<input type="text" name="txt-phone" id="txt-phone"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-fax">Fax</label>
-					<input type="text" name="txt-fax" id="txt-fax"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-email">Email</label>
-					<input type="email" name="txt-email" id="txt-email"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-website">Website</label>
-					<input type="text" name="txt-website" id="txt-website"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-contact1">Contact 1</label>
-					<input type="text" name="txt-contact1" id="txt-contact1"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txt-contact2">Contact 2</label>
-					<input type="text" name="txt-contact2" id="txt-contact2"  />
-				</fieldset>
-				
-				<fieldset>
-					<button type="submit">Save Info</button>
-				</fieldset>
-			</form>
-		
-		</div>
-	</div><!-- /collapsible -->
-	
-	<div data-role="collapsible" id="div-services-container" style="display:none" >
-	    <h3>Services</h3>
-		<p class="info-text">Check or un-check the desired services.  Changes are saved automatically.</p>
-	    <div id="div-services"></div>
-	</div><!-- /collapsible -->
-	
-	
-		<div data-role="collapsible" id="div-add-container" style="display:none" >
-	    <h3>Add a new Company</h3>
-		
-	   	<div id="div-add">
-		
-			<form id="frm-add">
-				
-				<fieldset>
-					<label for="chka-active">Active</label>
-					<input type="checkbox" name="chka-active" id="chka-active"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="lbDate">Membership Start</label>
-					<input name="lbDate" id="lbDate" onchange="DateSet()" type="text" data-theme="b" data-role="datebox" data-options='{"mode":"flipbox","useHeader" : false, "overrideDateFormat":"%Y-%m-%d", "showInitialValue" : true,"themeSetButton" : "b"}' />
-				</fieldset>
-				
-				<fieldset>
-					<label for="lbDate2">Membership End</label>
-					<input name="lbDate2" id="lbDate2"  type="text" data-theme="b" data-role="datebox" data-options='{"mode":"flipbox","useHeader" : false, "overrideDateFormat":"%Y-%m-%d", "showInitialValue" : true,"themeSetButton" : "b"}' />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-name">Company Name</label>
-					<input type="text" name="txta-name" id="txta-name"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-address">Address</label>
-					<input type="text" name="txta-address" id="txta-address"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-city">City</label>
-					<input type="text" name="txta-city" id="txta-city"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="ddla-province">Province</label>
-					<select id="ddla-province"></select>
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-postal">Postal Code</label>
-					<input type="text" name="txta-postal" id="txta-postal"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-phone">Phone</label>
-					<input type="text" name="txta-phone" id="txta-phone"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-fax">Fax</label>
-					<input type="text" name="txta-fax" id="txta-fax"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-email">Email</label>
-					<input type="email" name="txta-email" id="txta-email"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-website">Website</label>
-					<input type="text" name="txta-website" id="txta-website"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-contact1">Contact 1</label>
-					<input type="text" name="txta-contact1" id="txta-contact1"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-contact2">Contact 2</label>
-					<input type="text" name="txta-contact2" id="txta-contact2"  />
-				</fieldset>
-				
-				<fieldset>
-					<label for="txta-products">Info/Products</label>
-					<textarea type="text" name="txta-products" id="txta-products"></textarea>
-				</fieldset>
-				
-				<fieldset>
-					<button type="submit">Add Company</button>
-				</fieldset>
-			</form>
-		
-		</div>
-	</div><!-- /collapsible -->
-			
-		
-	</div>
-		
-	</div><!-- content -->
-
-
-	
-
-	
-
-
-<div data-role="footer" data-position="fixed" style="z-index:99999">
-		<div data-role="navbar">
-			<ul>
-				
-				<li>
-					
-					<a href="#" id="btn-back" data-rel="back" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important"></a> 
-				</li>
-				
-			</ul>
-		</div>
-	</div><!-- footer -->
-
-	
-
-	<script type="text/javascript">
-	
-		$(document).delegate("#adminPage", "pagebeforeshow", function() {
-			
-			PrepPage();
-			
-			
-			
-		});
-		
-		function PrepPage(){
-			var EMAIL = window.localStorage.getItem("EMAIL");
-			var MID = window.localStorage.getItem("MID");
-			
-			
-			
-			if(EMAIL !== "" && MID > 0){
-				$.ajax({
-				type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/get_admin.php",
-					async: false,
-					data : {'EMAIL' : EMAIL, 'MID' : MID},
-					dataType : "json",
-					success : function(data) {
-						
-							GetProvinces();
-						
-						$("#txt-adminemail").val(data.email);
-						//if(data.join > 0){
-						//	$('#chk-join').prop('checked', true);
-						//	$("#chk-join").val("on").flipswitch("refresh");
-						//}
-						//if(data.push > 0){
-						//	$('#chk-push').prop('checked', true);
-						//	$("#chk-push").val("on").flipswitch("refresh");
-						//}
-						if(data.member > 0){
-							$("#txt-membernum").val(data.mid);
 							
-						}
-						if(data.admin == "1"){
-							$("#div-add-container").show();
-							$("#lbDate").datebox('refresh');
-							$("#lbDate2").datebox('refresh');
-							
-						}
-						if(data.member > 0){
-						
-							GetInfo();
-							GetServices();
-							
-						}else{
-							$("#div-err").html(data.error);
-						}
-							
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
+							<fieldset>
+								<button type="submit">
+									Save
+								</button>
+							</fieldset>
+
+							<div id="div-admin">
+
+							</div>
+
+						</form>
+					</div><!-- /collapsible -->
+
+					<div data-role="collapsible" id="div-info-container" style="display:none" >
+						    <h3>Company Info</h3>
+						<p class="info-text">
+							Manage your company info, click the save button at the bottom to save changes.
+						</p>
+						   
+						<div id="div-info">
+
+							<form id="frmInfo">
+								<fieldset>
+									<label for="txt-name">Company Name</label>
+									<input type="text" name="txt-name" id="txt-name"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-address">Address</label>
+									<input type="text" name="txt-address" id="txt-address"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-city">City</label>
+									<input type="text" name="txt-city" id="txt-city"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="ddl-province">Province</label>
+									<select id="ddl-province"></select>
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-postal">Postal Code</label>
+									<input type="text" name="txt-postal" id="txt-postal"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-phone">Phone</label>
+									<input type="text" name="txt-phone" id="txt-phone"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-fax">Fax</label>
+									<input type="text" name="txt-fax" id="txt-fax"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-email">Email</label>
+									<input type="email" name="txt-email" id="txt-email"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-website">Website</label>
+									<input type="text" name="txt-website" id="txt-website"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-contact1">Contact 1</label>
+									<input type="text" name="txt-contact1" id="txt-contact1"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txt-contact2">Contact 2</label>
+									<input type="text" name="txt-contact2" id="txt-contact2"  />
+								</fieldset>
+
+								<fieldset>
+									<button type="submit">
+										Save Info
+									</button>
+								</fieldset>
+							</form>
+
+						</div>
+					</div><!-- /collapsible -->
+
+					<div data-role="collapsible" id="div-services-container" style="display:none" >
+						    <h3>Services</h3>
+						<p class="info-text">
+							Check or un-check the desired services.  Changes are saved automatically.
+						</p>
+						    <div id="div-services"></div>
+					</div><!-- /collapsible -->
+
+					<div data-role="collapsible" id="div-add-container" style="display:none" >
+						    <h3>Add a new Company</h3>
+
+						   
+						<div id="div-add">
+
+							<form id="frm-add">
+
+								<fieldset>
+									<label for="chka-active">Active</label>
+									<input type="checkbox" name="chka-active" id="chka-active"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="lbDate">Membership Start</label>
+									<input name="lbDate" id="lbDate" onchange="DateSet()" type="text" data-theme="b" data-role="datebox" data-options='{"mode":"flipbox","useHeader" : false, "overrideDateFormat":"%Y-%m-%d", "showInitialValue" : true,"themeSetButton" : "b"}' />
+								</fieldset>
+
+								<fieldset>
+									<label for="lbDate2">Membership End</label>
+									<input name="lbDate2" id="lbDate2"  type="text" data-theme="b" data-role="datebox" data-options='{"mode":"flipbox","useHeader" : false, "overrideDateFormat":"%Y-%m-%d", "showInitialValue" : true,"themeSetButton" : "b"}' />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-name">Company Name</label>
+									<input type="text" name="txta-name" id="txta-name"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-address">Address</label>
+									<input type="text" name="txta-address" id="txta-address"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-city">City</label>
+									<input type="text" name="txta-city" id="txta-city"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="ddla-province">Province</label>
+									<select id="ddla-province"></select>
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-postal">Postal Code</label>
+									<input type="text" name="txta-postal" id="txta-postal"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-phone">Phone</label>
+									<input type="text" name="txta-phone" id="txta-phone"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-fax">Fax</label>
+									<input type="text" name="txta-fax" id="txta-fax"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-email">Email</label>
+									<input type="email" name="txta-email" id="txta-email"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-website">Website</label>
+									<input type="text" name="txta-website" id="txta-website"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-contact1">Contact 1</label>
+									<input type="text" name="txta-contact1" id="txta-contact1"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-contact2">Contact 2</label>
+									<input type="text" name="txta-contact2" id="txta-contact2"  />
+								</fieldset>
+
+								<fieldset>
+									<label for="txta-products">Info/Products</label>
+									<textarea type="text" name="txta-products" id="txta-products"></textarea>
+								</fieldset>
+
+								<fieldset>
+									<button type="submit">
+										Add Company
+									</button>
+								</fieldset>
+							</form>
+
+						</div>
+					</div><!-- /collapsible -->
+
+				</div>
+
+			</div><!-- content -->
+
+			<div data-role="footer" data-position="fixed" style="z-index:99999">
+				<div data-role="navbar">
+					<ul>
+
+						<li>
+
+							<a href="#" id="btn-back" data-rel="back" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important"></a>
+						</li>
+
+					</ul>
+				</div>
+			</div><!-- footer -->
+
+			<script type="text/javascript">
+				$(document).delegate("#adminPage", "pagebeforeshow", function() {
+
+					PrepPage();
+
 				});
-			}else{
-				 $( "#div-settings-container" ).collapsible( "expand" );
-				
 
-			}
-			
-			
-			
-			
-		}
-				
-		function GetProvinces(){
-			
-			$("#ddl-province").empty();
-			$("#ddla-province").empty();
-			$("#ddl-province").append("<option value='-1'>Select a Province</option>");
-			$("#ddla-province").append("<option value='-1'>Select a Province</option>");
-			var html = "";
-			var xml = window.localStorage.getItem("PROV");	
-			xmlDoc = $.parseXML(xml);
-			$xml = $(xmlDoc);
-			$xml.find("province").each(function() {
-				var id = $(this).find('id').text();
-				var name = $(this).find('name').text();
-			    $("#ddl-province").append("<option value='" + id + "'>" + name + "</option>");
-			    $("#ddla-province").append("<option value='" + id + "'>" + name + "</option>");
-		
-			});
-		
-			$("#ddl-province").selectmenu("refresh");
-			$("#ddla-province").selectmenu("refresh");
-						
-			
-		}
-				
-		function GetInfo(){
-			$("#div-info-container").show();
-			var MID = window.localStorage.getItem("MID");
-			$.ajax({
-			type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/get_company.php",
-				async: false,
-				data : {'MID' : MID},
-				dataType : "json",
-				success : function(data) {
-					
-					$("#txt-name").val(data.name);
-					$("#txt-address").val(data.address);
-					$("#txt-province").val(data.province);
-					$("#txt-city").val(data.city);
-					$("#txt-postal").val(data.postal);
-					$("#txt-phone").val(data.phone);
-					$("#txt-fax").val(data.fax);
-					$("#txt-email").val(data.email);
-					$("#txt-contact1").val(data.contact1);
-					$("#txt-contact2").val(data.contact2);
-					$("#ddl-province").val(data.provinceid);
-					$("#ddl-province").selectmenu("refresh");
-					$("#txt-website").val(data.website);
-					
-				},
-				error : function(xhr, errorType, exception) {
-					alert("Search" + xhr + errorType + exception);
-				}
-			});
-		}
-				
-		function SaveInfo(){
-			
-			var MID = window.localStorage.getItem("MID");
-			
-			var name = $("#txt-name").val();
-			var address = $("#txt-address").val();
-			var province = $("#ddl-province").val();
-			var city = $("#txt-city").val();
-			var postal = $("#txt-postal").val();
-			var phone = $("#txt-phone").val();
-			var fax = $("#txt-fax").val();
-			var email = $("#txt-email").val();
-			var contact1 = $("#txt-contact1").val();
-			var contact2 = $("#txt-contact2").val();
-			var website = $("#txt-website").val();
-			$.ajax({
-			type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/save_info.php",
-				async: false,
-				data : {'EMAIL' : email, 
-						'MID' : MID, 
-						'NAME' : name,
-						'ADDRESS' : address,
-						'PROV' : province,
-						'CITY' : city,
-						'POSTAL' : postal,
-						'PHONE' : phone,
-						'FAX' : fax,
-						'CONTACT1' : contact1,
-						'CONTACT2' : contact2,
-						'WEBSITE' : website
-						
-						},
-				dataType : "json",
-				success : function(data) {
-					showErrorMessage("Company Info saved successfully!", $("#err"), 0);
-					$("#loading").hide();	
-				},
-				error : function(xhr, errorType, exception) {
-					alert("Search" + xhr + errorType + exception);
-				}
-			});
-		}
-		
-		function AddCompany(){
-			
-			var MID = window.localStorage.getItem("MID");
-			var cango = true;
-			var name = $("#txta-name").val();
-			var address = $("#txta-address").val();
-			var province = $("#ddla-province").val();
-			var city = $("#txta-city").val();
-			var postal = $("#txta-postal").val();
-			var phone = $("#txta-phone").val();
-			var fax = $("#txta-fax").val();
-			var email = $("#txta-email").val();
-			var contact1 = $("#txta-contact1").val();
-			var contact2 = $("#txta-contact2").val();
-			var website = $("#txta-website").val();
-			var active = "0";
-			if ($("#chka-active").is(':checked')) {
-				active = "1";
-			}
-			var dfrom = $("#lbDate").val();
-			var dto = $("#lbDate2").val();
-			var products = $("#txta-products").val();
-			if(name.trim() == "" || email.trim() == ""){
-				cango = false;
-			}
-			
-			if(cango == true){
-			$.ajax({
-			type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/add_company.php",
-				async: false,
-				data : {'EMAIL' : email, 
-						'MID' : MID, 
-						'NAME' : name,
-						'ADDRESS' : address,
-						'PROV' : province,
-						'CITY' : city,
-						'POSTAL' : postal,
-						'PHONE' : phone,
-						'FAX' : fax,
-						'CONTACT1' : contact1,
-						'CONTACT2' : contact2,
-						'WEBSITE' : website,
-						'PRODUCTS' : products,
-						'ACTIVE' : active,
-						'DATEFROM' : dfrom,
-						'DATETO' : dto
-						
-						},
-				dataType : "json",
-				success : function(data) {
-					
-					if(data.error == ""){
-						showErrorMessage("Company added successfully!", $("#err"), 0);
-						ClearAdd();
-					}else{
-						showErrorMessage(data.error, $("#err"), 0);
+				function PrepPage() {
+					var EMAIL = window.localStorage.getItem("EMAIL");
+					var MID = window.localStorage.getItem("MID");
+
+					if (EMAIL !== "" && MID > 0) {
+						$.ajax({
+							type : "POST",
+							url : "http://mycfit.ca/site_amwa_services/get_admin.php",
+							async : false,
+							data : {
+								'EMAIL' : EMAIL,
+								'MID' : MID
+							},
+							dataType : "json",
+							success : function(data) {
+
+								GetProvinces();
+
+								$("#txt-adminemail").val(data.email);
+								//if(data.join > 0){
+								//	$('#chk-join').prop('checked', true);
+								//	$("#chk-join").val("on").flipswitch("refresh");
+								//}
+								//if(data.push > 0){
+								//	$('#chk-push').prop('checked', true);
+								//	$("#chk-push").val("on").flipswitch("refresh");
+								//}
+								if (data.member > 0) {
+									$("#txt-membernum").val(data.mid);
+
+								}
+								if (data.admin == "1") {
+									$("#div-add-container").show();
+									$("#lbDate").datebox('refresh');
+									$("#lbDate2").datebox('refresh');
+
+								}
+								if (data.member > 0) {
+
+									GetInfo();
+									GetServices();
+
+								} else {
+									$("#div-err").html(data.error);
+								}
+
+							},
+							error : function(xhr, errorType, exception) {
+								alert("Search" + xhr + errorType + exception);
+							}
+						});
+					} else {
+						$("#div-settings-container").collapsible("expand");
+
 					}
-					$("#loading").hide();	
-				},
-				error : function(xhr, errorType, exception) {
-					alert("Search" + xhr + errorType + exception);
+
 				}
-			});
-			
-			}else{
-				showErrorMessage("Please enter a Company Name and Email", $("#err"), 0);
-			}
-		}
-		
-		function ClearAdd(){
-			$("#txta-name").val("");
-			$("#txta-address").val("");
-			$("#txta-city").val("");
-			$("#txta-postal").val("");
-			$("#txta-phone").val("");
-			$("#txta-fax").val("");
-			$("#txta-email").val("");
-			$("#txta-contact1").val("");
-			$("#txta-contact2").val("");
-			$("#txta-website").val("");
-			$("#txta-products").val("");
-		}
-		
-		function GetServices(){
-			var MID = window.localStorage.getItem("MID");
-			$.ajax({
-			type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/get_services.php",
-				async: false,
-				data : {'MID' : MID},
-				dataType : "json",
-				success : function(data) {
-					$("#div-services").html(data.result);
-					$('input[type=checkbox]').each(function () {
-		          		$("#" + this.id).checkboxradio();
-					});
-					
-					/*
+
+				function GetProvinces() {
+
+					$("#ddl-province").empty();
+					$("#ddla-province").empty();
+					$("#ddl-province").append("<option value='-1'>Select a Province</option>");
+					$("#ddla-province").append("<option value='-1'>Select a Province</option>");
 					var html = "";
-					var xml = data.result;
+					var xml = window.localStorage.getItem("PROV");
 					xmlDoc = $.parseXML(xml);
 					$xml = $(xmlDoc);
-					$xml.find("service").each(function() {
-						
+					$xml.find("province").each(function() {
 						var id = $(this).find('id').text();
 						var name = $(this).find('name').text();
-						var chkd = $(this).find('has').text();
-						$("#div-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true' onchange='ShowSubs(" + id + ")' " + chkd + "></input>");
-						
-						$("#chk" + id).checkboxradio();
-						
-						$("#div-services").append("<div id='sub" + id + "' style='display:none'>");
-						var subs =  $(this).find('subs').html();
-						xmlDoc2 = $.parseXML(subs);
-						$subs = $(xmlDoc2);
-						$subs.find("sub").each(function() {
-							var sid = $(this).find('sub_id').text();
-							var sname = $(this).find('sub_name').text();
-							var schkd = $(this).find('shas').text();
-							$("#div-services").append("<label id='lbl-" + id + "-" + sid + "' class='lblsub lbl-" + id + "' lbl style='display:none' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input onchange='AddSub(" + id + "," + sid + ")' class='chksub chk-" + id + "' style='display:none' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true' " + schkd + "></input>");
-							$("#chk-" + id + "-" + sid).checkboxradio();
-						});
-						$("#div-services").append("</div>");
-						
-						if(chkd == "checked"){
-							$(".lbl-" + id).show();
-							$(".chk-" + id).show();
-						}
-						
+						$("#ddl-province").append("<option value='" + id + "'>" + name + "</option>");
+						$("#ddla-province").append("<option value='" + id + "'>" + name + "</option>");
+
 					});
-					
-					*/
-					
-				},
-				error : function(xhr, errorType, exception) {
-					alert("Search" + xhr + errorType + exception);
+
+					$("#ddl-province").selectmenu("refresh");
+					$("#ddla-province").selectmenu("refresh");
+
 				}
-			});
-			$("#div-services-container").show();
-		}
-				
-		function ShowSubs(id){
-			if ($("#chk" + id).is(':checked')) {
-				$(".lbl-" + id).show();
-				$(".chk-" + id).show();
-				
-				AddService(id);
-				
-			}else{
-				
-				DeleteService(id);
-				$("input.chk-" + id).each(function(i) {
-			    	$("#" + this.id).prop('checked', false);
-			    	$("#" + this.id).checkboxradio();
-			     });   
-			    	
-			    $("label.lbl-" + id).each(function(i) {
-			    	$("#" + this.id).removeClass("ui-checkbox-on");
-			    	$("#" + this.id).addClass("ui-checkbox-off");
-			     });   
-			                 
-			     $(".lbl-" + id).hide();
-				 $(".chk-" + id).hide();
-			}
-		
-			
-		}
-				
-		function AddService(id){
-			var MID = window.localStorage.getItem("MID");
-			$.ajax({
-					type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/add_company_service.php",
-					async: false,
-					data : {'SID' : id, 'MID' : MID},
-					dataType : "json",
-					success : function(data) {
-						
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
-				}); 
-		}
-		
-		function DeleteService(id){
-			var MID = window.localStorage.getItem("MID");
-			
-			$.ajax({
-					type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/delete_company_service.php",
-					async: false,
-					data : {'SID' : id, 'MID' : MID},
-					dataType : "json",
-					success : function(data) {
-						
-					
-							
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
-				}); 
-		}
-				
-		function AddSub(sid,ssid){
-			if ($("#chk-" + sid + "-" + ssid).is(':checked')) {
-				AddSubService(sid,ssid);
-			}else{
-				DeleteSubService(sid,ssid);
-			}
-		}
-		
-		function AddSubService(id,sid){
-			var MID = window.localStorage.getItem("MID");
-			$.ajax({
-					type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/add_company_sub_service.php",
-					async: false,
-					data : {'SID' : id, 'MID' : MID,'SSID' : sid},
-					dataType : "json",
-					success : function(data) {
-						
-						
-							
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
-				}); 
-		}
-		
-		function DeleteSubService(id,sid){
-			var MID = window.localStorage.getItem("MID");
-			$.ajax({
-					type : "POST",
-					url : "http://mycfit.ca/site_amwa_services/delete_company_sub_service.php",
-					async: false,
-					data : {'SID' : id, 'MID' : MID, 'SSID' : sid},
-					dataType : "json",
-					success : function(data) {
-						
-						
-							
-					},
-					error : function(xhr, errorType, exception) {
-						alert("Search" + xhr + errorType + exception);
-					}
-				}); 
-		}
-				
-		function SaveAdmin(){
-			
-			var email= $("#txt-adminemail").val();
-			var mid = $("#txt-membernum").val();
-			var join = 1;
-			var push = 1;
-			/*
-			if ($("#chk-join").is(':checked')) {
-				join = 1;
-			}
-			var push = 0;
-			if ($("#chk-push").is(':checked')) {
-				push = 1;
-			}
-			*/
-			
-			$.ajax({
-			type : "POST",
-				url : "http://mycfit.ca/site_amwa_services/save_admin.php",
-				async: false,
-				data : {'EMAIL' : email, 'MID' : mid, 'JOIN' : join, 'PUSH' : push},
-				dataType : "json",
-				success : function(data) {
-					
-					window.localStorage.setItem("EMAIL", data.email);
-					if(data.member > 0){
-						window.localStorage.setItem("MID", data.mid);
-						if(data.admin > 0){
-							window.localStorage.setItem("ADMIN", data.admin);
-						}else{
-							window.localStorage.setItem("ADMIN", "0");
+
+				function GetInfo() {
+					$("#div-info-container").show();
+					var MID = window.localStorage.getItem("MID");
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/get_company.php",
+						async : false,
+						data : {
+							'MID' : MID
+						},
+						dataType : "json",
+						success : function(data) {
+
+							$("#txt-name").val(data.name);
+							$("#txt-address").val(data.address);
+							$("#txt-province").val(data.province);
+							$("#txt-city").val(data.city);
+							$("#txt-postal").val(data.postal);
+							$("#txt-phone").val(data.phone);
+							$("#txt-fax").val(data.fax);
+							$("#txt-email").val(data.email);
+							$("#txt-contact1").val(data.contact1);
+							$("#txt-contact2").val(data.contact2);
+							$("#ddl-province").val(data.provinceid);
+							$("#ddl-province").selectmenu("refresh");
+							$("#txt-website").val(data.website);
+
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
 						}
-						PrepPage();
-					}
-					if(data.admin > 0){
-							window.localStorage.setItem("ADMIN", data.admin);
-						}else{
-							window.localStorage.setItem("ADMIN", "0");
-						}	
-					$("#loading").hide();		
-					showErrorMessage("Save was successful!", $("#err"), 0);
-				},
-				error : function(xhr, errorType, exception) {
-					alert("Search" + xhr + errorType + exception);
+					});
 				}
-			});
-			
-			
-			
-		}
-		
-		$('#frm-admin').submit(function (e) {
-			$("#loading").show();
-		    e.preventDefault();
-		    SaveAdmin();
-		});
 
-		$('#frmInfo').submit(function (e) {
-			$("#loading").show();
-		    e.preventDefault();
-		    SaveInfo();
-		});		
-		
-		$('#frm-add').submit(function (e) {
-			$("#loading").show();
-		    e.preventDefault();
-		    AddCompany();
-		});				
-				
-				
+				function SaveInfo() {
 
-function Back(){
-	window.location = "directory.html";
-}
+					var MID = window.localStorage.getItem("MID");
 
-	function DateSet(){
-			$("#lbDate2").prop('disabled', false);
-			$("#lbDate2").attr("min", $("#lbDate").val());
-			$("#lbDate2").datebox('applyMinMax');
-		}
-				
-			
-	      
-			
+					var name = $("#txt-name").val();
+					var address = $("#txt-address").val();
+					var province = $("#ddl-province").val();
+					var city = $("#txt-city").val();
+					var postal = $("#txt-postal").val();
+					var phone = $("#txt-phone").val();
+					var fax = $("#txt-fax").val();
+					var email = $("#txt-email").val();
+					var contact1 = $("#txt-contact1").val();
+					var contact2 = $("#txt-contact2").val();
+					var website = $("#txt-website").val();
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/save_info.php",
+						async : false,
+						data : {
+							'EMAIL' : email,
+							'MID' : MID,
+							'NAME' : name,
+							'ADDRESS' : address,
+							'PROV' : province,
+							'CITY' : city,
+							'POSTAL' : postal,
+							'PHONE' : phone,
+							'FAX' : fax,
+							'CONTACT1' : contact1,
+							'CONTACT2' : contact2,
+							'WEBSITE' : website
 
-			</script>			
+						},
+						dataType : "json",
+						success : function(data) {
+							showErrorMessage("Company Info saved successfully!", $("#err"), 0);
+							$("#loading").hide();
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+				}
 
-</div>
+				function AddCompany() {
+
+					var MID = window.localStorage.getItem("MID");
+					var cango = true;
+					var name = $("#txta-name").val();
+					var address = $("#txta-address").val();
+					var province = $("#ddla-province").val();
+					var city = $("#txta-city").val();
+					var postal = $("#txta-postal").val();
+					var phone = $("#txta-phone").val();
+					var fax = $("#txta-fax").val();
+					var email = $("#txta-email").val();
+					var contact1 = $("#txta-contact1").val();
+					var contact2 = $("#txta-contact2").val();
+					var website = $("#txta-website").val();
+					var active = "0";
+					if ($("#chka-active").is(':checked')) {
+						active = "1";
+					}
+					var dfrom = $("#lbDate").val();
+					var dto = $("#lbDate2").val();
+					var products = $("#txta-products").val();
+					if (name.trim() == "" || email.trim() == "") {
+						cango = false;
+					}
+
+					if (cango == true) {
+						$.ajax({
+							type : "POST",
+							url : "http://mycfit.ca/site_amwa_services/add_company.php",
+							async : false,
+							data : {
+								'EMAIL' : email,
+								'MID' : MID,
+								'NAME' : name,
+								'ADDRESS' : address,
+								'PROV' : province,
+								'CITY' : city,
+								'POSTAL' : postal,
+								'PHONE' : phone,
+								'FAX' : fax,
+								'CONTACT1' : contact1,
+								'CONTACT2' : contact2,
+								'WEBSITE' : website,
+								'PRODUCTS' : products,
+								'ACTIVE' : active,
+								'DATEFROM' : dfrom,
+								'DATETO' : dto
+
+							},
+							dataType : "json",
+							success : function(data) {
+
+								if (data.error == "") {
+									showErrorMessage("Company added successfully!", $("#err"), 0);
+									ClearAdd();
+								} else {
+									showErrorMessage(data.error, $("#err"), 0);
+								}
+								$("#loading").hide();
+							},
+							error : function(xhr, errorType, exception) {
+								alert("Search" + xhr + errorType + exception);
+							}
+						});
+
+					} else {
+						showErrorMessage("Please enter a Company Name and Email", $("#err"), 0);
+					}
+				}
+
+				function ClearAdd() {
+					$("#txta-name").val("");
+					$("#txta-address").val("");
+					$("#txta-city").val("");
+					$("#txta-postal").val("");
+					$("#txta-phone").val("");
+					$("#txta-fax").val("");
+					$("#txta-email").val("");
+					$("#txta-contact1").val("");
+					$("#txta-contact2").val("");
+					$("#txta-website").val("");
+					$("#txta-products").val("");
+				}
+
+				function GetServices() {
+					var MID = window.localStorage.getItem("MID");
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/get_services.php",
+						async : false,
+						data : {
+							'MID' : MID
+						},
+						dataType : "json",
+						success : function(data) {
+							$("#div-services").html(data.result);
+							$('input[type=checkbox]').each(function() {
+								$("#" + this.id).checkboxradio();
+							});
+
+							/*
+							 var html = "";
+							 var xml = data.result;
+							 xmlDoc = $.parseXML(xml);
+							 $xml = $(xmlDoc);
+							 $xml.find("service").each(function() {
+
+							 var id = $(this).find('id').text();
+							 var name = $(this).find('name').text();
+							 var chkd = $(this).find('has').text();
+							 $("#div-services").append("<label for='chk" + id + "'>" + name + "</label><input type='checkbox' id='chk" + id + "' name='chk" + id + "' data-mini='true' onchange='ShowSubs(" + id + ")' " + chkd + "></input>");
+
+							 $("#chk" + id).checkboxradio();
+
+							 $("#div-services").append("<div id='sub" + id + "' style='display:none'>");
+							 var subs =  $(this).find('subs').html();
+							 xmlDoc2 = $.parseXML(subs);
+							 $subs = $(xmlDoc2);
+							 $subs.find("sub").each(function() {
+							 var sid = $(this).find('sub_id').text();
+							 var sname = $(this).find('sub_name').text();
+							 var schkd = $(this).find('shas').text();
+							 $("#div-services").append("<label id='lbl-" + id + "-" + sid + "' class='lblsub lbl-" + id + "' lbl style='display:none' for='chk-" + id + "-" + sid + "'>" + sname + "</label><input onchange='AddSub(" + id + "," + sid + ")' class='chksub chk-" + id + "' style='display:none' type='checkbox' id='chk-" + id + "-" + sid + "' name='chk-" + id + "-" + sid + "' data-mini='true' " + schkd + "></input>");
+							 $("#chk-" + id + "-" + sid).checkboxradio();
+							 });
+							 $("#div-services").append("</div>");
+
+							 if(chkd == "checked"){
+							 $(".lbl-" + id).show();
+							 $(".chk-" + id).show();
+							 }
+
+							 });
+
+							 */
+
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+					$("#div-services-container").show();
+				}
+
+				function ShowSubs(id) {
+					if ($("#chk" + id).is(':checked')) {
+						$(".lbl-" + id).show();
+						$(".chk-" + id).show();
+
+						AddService(id);
+
+					} else {
+
+						DeleteService(id);
+						$("input.chk-" + id).each(function(i) {
+							$("#" + this.id).prop('checked', false);
+							$("#" + this.id).checkboxradio();
+						});
+
+						$("label.lbl-" + id).each(function(i) {
+							$("#" + this.id).removeClass("ui-checkbox-on");
+							$("#" + this.id).addClass("ui-checkbox-off");
+						});
+
+						$(".lbl-" + id).hide();
+						$(".chk-" + id).hide();
+					}
+
+				}
+
+				function AddService(id) {
+					var MID = window.localStorage.getItem("MID");
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/add_company_service.php",
+						async : false,
+						data : {
+							'SID' : id,
+							'MID' : MID
+						},
+						dataType : "json",
+						success : function(data) {
+
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+				}
+
+				function DeleteService(id) {
+					var MID = window.localStorage.getItem("MID");
+
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/delete_company_service.php",
+						async : false,
+						data : {
+							'SID' : id,
+							'MID' : MID
+						},
+						dataType : "json",
+						success : function(data) {
+
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+				}
+
+				function AddSub(sid, ssid) {
+					if ($("#chk-" + sid + "-" + ssid).is(':checked')) {
+						AddSubService(sid, ssid);
+					} else {
+						DeleteSubService(sid, ssid);
+					}
+				}
+
+				function AddSubService(id, sid) {
+					var MID = window.localStorage.getItem("MID");
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/add_company_sub_service.php",
+						async : false,
+						data : {
+							'SID' : id,
+							'MID' : MID,
+							'SSID' : sid
+						},
+						dataType : "json",
+						success : function(data) {
+
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+				}
+
+				function DeleteSubService(id, sid) {
+					var MID = window.localStorage.getItem("MID");
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/delete_company_sub_service.php",
+						async : false,
+						data : {
+							'SID' : id,
+							'MID' : MID,
+							'SSID' : sid
+						},
+						dataType : "json",
+						success : function(data) {
+
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+				}
+
+				function SaveAdmin() {
+
+					var email = $("#txt-adminemail").val();
+					var mid = $("#txt-membernum").val();
+					var join = 1;
+					var push = 1;
+					/*
+					 if ($("#chk-join").is(':checked')) {
+					 join = 1;
+					 }
+					 var push = 0;
+					 if ($("#chk-push").is(':checked')) {
+					 push = 1;
+					 }
+					 */
+
+					$.ajax({
+						type : "POST",
+						url : "http://mycfit.ca/site_amwa_services/save_admin.php",
+						async : false,
+						data : {
+							'EMAIL' : email,
+							'MID' : mid,
+							'JOIN' : join,
+							'PUSH' : push
+						},
+						dataType : "json",
+						success : function(data) {
+
+							window.localStorage.setItem("EMAIL", data.email);
+							if (data.member > 0) {
+								window.localStorage.setItem("MID", data.mid);
+								if (data.admin > 0) {
+									window.localStorage.setItem("ADMIN", data.admin);
+								} else {
+									window.localStorage.setItem("ADMIN", "0");
+								}
+								PrepPage();
+							}
+							if (data.admin > 0) {
+								window.localStorage.setItem("ADMIN", data.admin);
+							} else {
+								window.localStorage.setItem("ADMIN", "0");
+							}
+							$("#loading").hide();
+							showErrorMessage("Save was successful!", $("#err"), 0);
+						},
+						error : function(xhr, errorType, exception) {
+							alert("Search" + xhr + errorType + exception);
+						}
+					});
+
+				}
+
+
+				$('#frm-admin').submit(function(e) {
+					$("#loading").show();
+					e.preventDefault();
+					SaveAdmin();
+				});
+
+				$('#frmInfo').submit(function(e) {
+					$("#loading").show();
+					e.preventDefault();
+					SaveInfo();
+				});
+
+				$('#frm-add').submit(function(e) {
+					$("#loading").show();
+					e.preventDefault();
+					AddCompany();
+				});
+
+				function Back() {
+					window.location = "directory.html";
+				}
+
+				function DateSet() {
+					$("#lbDate2").prop('disabled', false);
+					$("#lbDate2").attr("min", $("#lbDate").val());
+					$("#lbDate2").datebox('applyMinMax');
+				}
+
+			</script>
+
+		</div>
 
 	</body>
 </html>
