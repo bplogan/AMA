@@ -56,7 +56,7 @@
 	<script type="text/javascript">
 	
 		$(document).delegate("#newsPage", "pagebeforeshow", function() {
-		
+			
 			GetNews();
 			
 		});
@@ -64,7 +64,7 @@
 		
 		
 		function GetNews(){
-			
+			alert("getting news");
 			//var uuid = window.localStorage.getItem("UUID");
 			var uuid = 'aaa';
 			$.ajax({
@@ -74,7 +74,7 @@
 					async: false,
 					dataType : "json",
 					success : function(data) {
-						
+						alert("got news");
 						$("#news").html(data.result);	
 						
 					},
