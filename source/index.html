@@ -95,7 +95,7 @@ $(document).on('pageshow','#loadPage', function(e,data){
 		var news = false;
 		var uuid = device.uuid;	
 		window.localStorage.setItem("UUID", uuid);
-		
+		alert("device ready");
 		$.ajax({
 					type : "POST",
 					url : "http://www.mycfit.ca/site_amwa_services/check_news.php",
