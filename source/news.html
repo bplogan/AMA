@@ -65,9 +65,9 @@
 		
 		
 		function GetNews(){
-			alert("getting news");
-			//var uuid = window.localStorage.getItem("UUID");
-			var uuid = 'aaa';
+			
+			var uuid = window.localStorage.getItem("UUID");
+			
 			$.ajax({
 					type : "POST",
 					url : "http://mycfit.ca/site_amwa_services/get_news.php",
@@ -75,7 +75,7 @@
 					async: false,
 					dataType : "json",
 					success : function(data) {
-						alert("got news");
+						
 						$("#news").html(data.result);	
 						
 					},
@@ -89,27 +89,7 @@
 	function OpenFile(filename){
 		
 		window.open('https://docs.google.com/viewer?url=' + filename + '&embedded=true', '_blank', 'location=yes');
-		var downloadUrl = filename;
-		var relativeFilePath = "downloads/amwa.pdf";  // using an absolute path also does not work
 		
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
-		   var fileTransfer = new FileTransfer();
-		   fileTransfer.download(
-		      downloadUrl,
-				
-		      // The correct path!
-		      fileSystem.root.toURL() + '/' + relativeFilePath,
-		
-		      function (entry) {
-		         alert("Success");
-		         console.log("download complete: " + entry.fullPath);
-		         window.open(entry.toURL(), '_blank', 'location=no,closebuttoncaption=Close,enableViewportScale=yes');
-		      },
-		      function (error) {
-		         alert("Error during download. Code = " + error.code);
-		      }
-		   );
-		});
 	}
 
 				

@@ -95,7 +95,7 @@ $(document).on('pageshow','#loadPage', function(e,data){
 		var news = false;
 		var uuid = device.uuid;	
 		window.localStorage.setItem("UUID", uuid);
-		alert("device ready");
+		
 		$.ajax({
 					type : "POST",
 					url : "http://www.mycfit.ca/site_amwa_services/check_news.php",
@@ -105,7 +105,7 @@ $(document).on('pageshow','#loadPage', function(e,data){
 					success : function(data) {
 						if(data.count == "1"){
 							news = true;
-							alert("there is news");
+							
 						}								
 					},
 					error : function(xhr, errorType, exception) {
@@ -155,7 +155,7 @@ $(document).on('pageshow','#loadPage', function(e,data){
 						
 						window.localStorage.setItem("ML", data.result);		
 						if(news == true){
-							alert("going to news");
+							
 							window.location = "news.html";
 						}else{
 							window.location = "directory.html";
