@@ -36,7 +36,7 @@
     <gap:plugin name="org.apache.cordova.statusbar"  />
     <gap:plugin name="org.apache.cordova.network-information"  />
     <gap:plugin name="org.apache.cordova.device"  />
-    <gap:plugin name="org.li8.inappbrowser" version="0.1" />
+    <gap:plugin name="org.apache.cordova.file-transfer" version="0.4.6" />
     
    
     

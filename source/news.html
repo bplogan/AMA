@@ -87,8 +87,26 @@
 
 	function OpenFile(filename){
 		
-		window.open(filename, '_blank', 'location=yes');
 		
+		var downloadUrl = filename;
+		var relativeFilePath = "MyDir/amwa.pdf";  // using an absolute path also does not work
+		
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
+		   var fileTransfer = new FileTransfer();
+		   fileTransfer.download(
+		      downloadUrl,
+		
+		      // The correct path!
+		      fileSystem.root.toURL() + '/' + relativeFilePath,
+		
+		      function (entry) {
+		         console.log("Success");
+		      },
+		      function (error) {
+		         console.log("Error during download. Code = " + error.code);
+		      }
+		   );
+		});
 	}
 
 				
