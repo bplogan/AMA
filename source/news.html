@@ -102,6 +102,8 @@
 		
 		      function (entry) {
 		         alert("Success");
+		         console.log("download complete: " + entry.fullPath);
+		         window.open(entry.toURL(), '_blank', 'location=no,closebuttoncaption=Close,enableViewportScale=yes');
 		      },
 		      function (error) {
 		         alert("Error during download. Code = " + error.code);
