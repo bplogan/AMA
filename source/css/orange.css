@@ -951,10 +951,12 @@ html .ui-bar-e .ui-btn:visited,
 html .ui-body-e .ui-btn:visited,
 html body .ui-group-theme-e .ui-btn:visited,
 html head + body .ui-btn.ui-btn-e:visited {
-	background-color: #f27118 /*{e-bup-background-color}*/;
+	background-color: rgba(242, 113, 24, 0.69) /*{e-bup-background-color}*/;
 	border-color: #853e0d /*{e-bup-border}*/;
 	color: #ffffff /*{e-bup-color}*/;
 	text-shadow: 0 /*{e-bup-shadow-x}*/ 0 /*{e-bup-shadow-y}*/ 0 /*{e-bup-shadow-radius}*/ #444444 /*{e-bup-shadow-color}*/;
+	
+	
 }
 /* Button hover */
 .ui-page-theme-e .ui-btn:hover,
