@@ -10,6 +10,7 @@
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<script src="main.js"></script>
+		<script src="phonegap.js"></script> 
 	
 	</head>
 
@@ -89,21 +90,21 @@
 		
 		
 		var downloadUrl = filename;
-		var relativeFilePath = "MyDir/amwa.pdf";  // using an absolute path also does not work
+		var relativeFilePath = "downloads/amwa.pdf";  // using an absolute path also does not work
 		
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fileSystem) {
 		   var fileTransfer = new FileTransfer();
 		   fileTransfer.download(
 		      downloadUrl,
-		
+				
 		      // The correct path!
 		      fileSystem.root.toURL() + '/' + relativeFilePath,
 		
 		      function (entry) {
-		         console.log("Success");
+		         alert("Success");
 		      },
 		      function (error) {
-		         console.log("Error during download. Code = " + error.code);
+		         alert("Error during download. Code = " + error.code);
 		      }
 		   );
 		});
