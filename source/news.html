@@ -88,7 +88,7 @@
 
 	function OpenFile(filename){
 		
-		
+		window.open('https://docs.google.com/viewer?url=' + filename + '&embedded=true', '_blank', 'location=yes');
 		var downloadUrl = filename;
 		var relativeFilePath = "downloads/amwa.pdf";  // using an absolute path also does not work
 		
