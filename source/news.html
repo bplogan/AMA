@@ -86,9 +86,11 @@
 				
 
 	function OpenFile(filename){
-		alert(filename);
+		
 		var ref = window.open(filename, '_blank', 'location=yes');
-		ref.show();
+		ref.addEventListener('loadstart', function() { alert('start: ' + event.url); });
+        ref.addEventListener('loadstop', function() { alert('stop: ' + event.url); });
+        ref.addEventListener('exit', function() { alert(event.type); });
 	}
 
 				
