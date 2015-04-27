@@ -24,7 +24,7 @@
 			
 
 
-			 <a href="javascript:GoAdmin()" class="ui-btn ui-btn-right ui-icon-gear ui-btn-icon-notext ui-corner-all ui-shadow ui-nodisc-icon" >Without circle</a>   
+		
 
 			
 		
@@ -85,7 +85,11 @@
 				
 				<li>
 					
-					<a href="#" id="btn-back" onclick="GoBack()" class="ui-link ui-btn ui-icon-goback ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important;"></a> 
+					<a href="#" id="btn-back" onclick="GoBack()" class="ui-link ui-btn ui-icon-carat-l ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important;margin-top:5px"></a> 
+					
+				</li>
+				<li>
+					<a href="#" id="btn-back" onclick="javascript:GoAdmin()" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top ui-shadow ui-corner-all ui-btn-active ui-nodisc-icon" style="border:none;background-color:#2f2f2f !important;margin-top:5px"></a> 
 				</li>
 				
 			</ul>
@@ -127,35 +131,13 @@
 			if(window.localStorage.getItem("SEARCHED") !== ""){
 			
 				if( (localStorage["fARR"] !== "") || (window.localStorage.getItem("fPROV") !== "0") || (window.localStorage.getItem("fCITY") !== "0") ){
-					
+					var xml = window.localStorage.getItem("ML");
 					$("#div-search").hide();
 					$("#div-company-list").show();
-					
-						
-							$("#company-list").empty();
-							var name = "";
-							var html = "";
-							var xml = window.localStorage.getItem("ML");
+					$("#company-list").empty().append(xml);
+					$('#company-list').listview('refresh');
+								
 							
-							xmlDoc = $.parseXML(xml);
-						    var admin = window.localStorage.getItem("ADMIN");
-							$xml = $(xmlDoc);
-							$xml.find("company").each(function() {
-								var id = $(this).find('id').text();
-								name = $(this).find('name').text();
-								var address = decodeURI($(this).find('address').text());
-								var member = $(this).find('member').text();
-								if(member == "1" || admin == "1"){
-									
-									$("#company-list").append("<li><a data-ajax='false' href='javascript:GoCompany(" + id + ")'>" + "<span style='color:#2a2a2a'>" + name + "</span><br >" +  address  + "</a></li>");
-								}else{
-									$("#company-list").append("<li style='color:#777777'>" + name + "</li>");
-								}
-								
-								
-								$('#company-list').listview('refresh');
-								
-							});
 						
 					
 					if(window.localStorage.getItem("fPROV") !== "0"){
@@ -445,52 +427,26 @@ function GetServices(){
 				}
 				
 				function Search(){
-					
+					var admin = window.localStorage.getItem("ADMIN");
 					var form = $("#frm-search");
 					$('#company-list').empty();
 					$.ajax({
 							type : "POST",
-							url : "http://mycfit.ca/site_amwa_services/get_companies.php",
+							url : "http://mycfit.ca/site_amwa_services/get_companies.php?admin=" + admin,
 							async: false,
 							data : form.serialize(),
 							dataType : "json",
 							success : function(data) {
 								
-							
-								if(data.count > 0){
-								var admin = window.localStorage.getItem("ADMIN");
 								
-								window.localStorage.setItem("ML",data.result);
-								var name = "";
-								var html = "";
-								var xml = data.result;
-								xmlDoc = $.parseXML(xml);
-								$xml = $(xmlDoc);
-								$xml.find("company").each(function() {
-									var id = $(this).find('id').text();
-									
-									name = $(this).find('name').text();
-									var address = $(this).find('address').text();
-									var member = $(this).find('member').text();
-									
+								if(data.count > 0){
+									window.localStorage.setItem("SEARCHED","Y");
+									window.localStorage.setItem("ML",data.result);
+									$('#company-list').empty().append(data.result);
 									$("#div-company-list").show();
 									$("#div-search").hide();
-									
-									if(member == "1" || admin == "1"){
-										$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + "<span style='color:#2a2a2a'>" + name + "</span><br >" +  address + "</a></li>");
-									}else{
-										$("#company-list").append("<li style='color:#777777' >" + name + "</li>");
-									}
-									
-									window.localStorage.setItem("SEARCHED","Y");
-								});
-								$("#loading").hide();
-								
-								
-								
-								
-								
-								$('#company-list').listview('refresh');		
+									$("#loading").hide();
+									$('#company-list').listview('refresh');		
 								
 								
 								}else{
@@ -510,7 +466,7 @@ function GetServices(){
 					$('#company-list').empty();
 					$.ajax({
 							type : "POST",
-							url : "http://mycfit.ca/site_amwa_services/get_companies.php",
+							url : "http://mycfit.ca/site_amwa_services/get_companies.php?admin=" + admin,
 							async: false,
 							data : {'TEXT' : text},
 							dataType : "json",
@@ -519,27 +475,10 @@ function GetServices(){
 									
 									localStorage["fARR"] = "0";
 									window.localStorage.setItem("ML",data.result);
-									var name = "";
-									var html = "";
-									var xml = data.result;
-									xmlDoc = $.parseXML(xml);
-									$xml = $(xmlDoc);
-									$xml.find("company").each(function() {
-										var id = $(this).find('id').text();
-										var member = $(this).find('member').text();
-										name = $(this).find('name').text();
-										var address = $(this).find('address').text();
-										
-										
-										$("#div-company-list").show();
-										$("#div-search").hide();
-										if(member == "1" || admin == "1"){
-										$("#company-list").append("<li><a href='javascript:GoCompany(" + id + ")'>" + name + "<br >" + address + "</a></li>");
-										}else{
-											$("#company-list").append("<li style='color:#777777' >" + name + "</li>");
-										}
-										window.localStorage.setItem("SEARCHED","Y");
-									});
+									$('#company-list').empty().append(data.result);
+									$("#div-company-list").show();
+									$("#div-search").hide();
+									window.localStorage.setItem("SEARCHED","Y");
 									$("#loading").hide();
 									$('#company-list').listview('refresh');
 								}else{
